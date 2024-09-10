@@ -18,9 +18,36 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'role',
+        'avatar',
         'email',
         'password',
     ];
+
+    public function earningCategories()
+    {
+        return $this->hasMany(EarningCategory::class);
+    }
+
+    public function expensesCategories()
+    {
+        return $this->hasMany(ExpenseCategory::class);
+    }
+
+    public function earnings()
+    {
+        return $this->hasMany(Earning::class);
+    }
+
+    public function expenses()
+    {
+        return $this->hasMany(Expense::class);
+    }
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
 
     /**
      * The attributes that should be hidden for serialization.

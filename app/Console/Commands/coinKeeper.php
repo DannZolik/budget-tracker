@@ -27,9 +27,7 @@ class coinKeeper extends Command
     public function handle()
     {
         if (App::environment('local', 'development')) {
-            $this->call('migrate:fresh', [
-                '--seeder' => 'MainSeeder'
-            ]);
+            $this->call('migrate:fresh', ["--seed"]);
             $this->info('Application reinstalled successfully.');
         } else {
             $this->error('This command can only be run in a development environment.');

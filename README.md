@@ -9,3 +9,8 @@
 4. php artisan migrate:fresh --seed
 
 bus labi!
+
+
+#  email verification:
+- uncomment lines in app/Models/User.php and app/Providers/Filament/AdminPanelProvider.php
+- do not forget to set up mail in .env file

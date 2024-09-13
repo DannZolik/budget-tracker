@@ -1,4 +1,4 @@
-# budget-tracker
+# budget-tracker quick start
 
 1. composer install
 
@@ -6,7 +6,8 @@
 
 3. php artisan storage:link
 
-4. php artisan migrate:fresh --seed
+4. php artisan coinKeeper:fresh
+
 
 bus labi!
 

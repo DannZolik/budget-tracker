@@ -2,19 +2,25 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Models\Contracts\HasAvatar;
 
+
+// enable when you need. do not forget to set up email
+//class User extends Authenticatable implements HasAvatar, MustVerifyEmail
 class User extends Authenticatable implements HasAvatar
 {
     use HasFactory, Notifiable;
 
     public function getFilamentAvatarUrl(): ?string
     {
+        if (is_null($this->avatar)){
+            return null;
+        }
         return url($this->avatar);
     }
 

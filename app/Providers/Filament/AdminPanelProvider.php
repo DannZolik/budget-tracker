@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use Filament\Notifications\Auth\VerifyEmail;
 use Filament\Pages;
 use Filament\Panel;
 use Filament\Widgets;
@@ -29,6 +30,8 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('')
+//            ->passwordReset() // enable when you need. do not forget to set up email
+//            ->emailVerification() // enable when you need. do not forget to set up email
             ->login()
             ->colors([
                 'primary' => Color::Green,

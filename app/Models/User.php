@@ -20,7 +20,7 @@ class User extends Authenticatable implements HasAvatar
         if (is_null($this->avatar)){
             return null;
         }
-        return asset($this->avatar);
+        return url('/storage/'.$this->avatar);
     }
 
     /**

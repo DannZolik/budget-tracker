@@ -15,13 +15,12 @@ use Filament\Models\Contracts\HasAvatar;
 class User extends Authenticatable implements HasAvatar
 {
     use HasFactory, Notifiable;
-
     public function getFilamentAvatarUrl(): ?string
     {
         if (is_null($this->avatar)){
             return null;
         }
-        return url($this->avatar);
+        return asset($this->avatar);
     }
 
     /**

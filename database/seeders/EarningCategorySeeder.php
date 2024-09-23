@@ -16,7 +16,7 @@ class EarningCategorySeeder extends Seeder
     {
         $userIds = User::pluck('id')->toArray();
         $earningCategories = ['Salary', 'Scholarship', 'Other'];
-        $icons = ['heroicon-s-banknotes', 'heroicon-s-academic-cap', 'heroicon-s-cash'];
+        $icons = ['heroicon-s-credit-card', 'heroicon-s-academic-cap', 'heroicon-s-banknotes'];
         $icons_color = ['#1a1716', '#1a1716', '#1a1716'];
         $bg_color = ['#1be104', '#04dee1', '#cbcbcb'];
 

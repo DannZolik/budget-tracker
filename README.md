@@ -6,7 +6,9 @@
 
 3. php artisan storage:link
 
-4. php artisan coinKeeper:fresh
+4. php artisan migrate
+
+5. php artisan coinKeeper:fresh
 
 
 bus labi!

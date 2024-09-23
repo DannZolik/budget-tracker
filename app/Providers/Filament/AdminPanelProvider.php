@@ -2,10 +2,8 @@
 
 namespace App\Providers\Filament;
 
-use Filament\Notifications\Auth\VerifyEmail;
 use Filament\Pages;
 use Filament\Panel;
-use Filament\Widgets;
 use Filament\PanelProvider;
 use Filament\Navigation\MenuItem;
 use Filament\Support\Colors\Color;
@@ -34,7 +32,12 @@ class AdminPanelProvider extends PanelProvider
 //            ->emailVerification() // enable when you need. do not forget to set up email
             ->login()
             ->colors([
-                'primary' => Color::Green,
+                'primary' => '#15803d',
+                'gray' => '#334155',
+                'danger' => Color::Rose,
+                'info' => Color::Blue,
+                'success' => Color::Emerald,
+                'warning' => Color::Orange,
             ])
             ->registration()
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')

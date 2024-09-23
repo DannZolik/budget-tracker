@@ -16,7 +16,7 @@ class ExpenseCategorySeeder extends Seeder
     {
         $users = User::pluck('id')->toArray();
         $expenseCategories = ['Food', 'Transport', 'Entertainment', 'Health', 'Education', 'Other'];
-        $icons = ['heroicon-s-restaurant', 'heroicon-s-car', 'heroicon-s-ticket', 'heroicon-s-medical-cross', 'heroicon-s-academic-cap', 'heroicon-s-cash'];
+        $icons = ['heroicon-s-shopping-cart', 'heroicon-s-truck', 'heroicon-s-ticket', 'heroicon-s-heart', 'heroicon-s-academic-cap', 'heroicon-s-banknotes'];
         $icons_color = ['#1a1716', '#1a1716', '#1a1716', '#1a1716', '#1a1716', '#1a1716'];
         $bg_color = ['#1be104', '#04dee1', '#cbcbcb', '#1be104', '#04dee1', '#cbcbcb'];
 

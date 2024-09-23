@@ -21,3 +21,4 @@ Homestead.yaml
 Homestead.json
 /.vagrant
 .phpunit.result.cache
+public/css/guava/filament-icon-picker/filament-icon-picker-stylesheet.css

@@ -8,6 +8,7 @@ use Filament\Tables\Table;
 use App\Models\EarningCategory;
 use Filament\Resources\Resource;
 use Illuminate\Support\Facades\Auth;
+use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Section;
 use Filament\Support\Enums\FontWeight;
 use Filament\Forms\Components\Textarea;
@@ -60,6 +61,10 @@ class EarningCategoryResource extends Resource
                                 'md' => 12,
                                 'lg' => 12,
                             ]),
+                        Hidden::make('user_id')
+                            ->default(function () {
+                                return Auth::id();
+                            }),
                         ColorPicker::make('icon_color')
                             ->label('Icon color')
                             ->columnSpan([
@@ -106,7 +111,16 @@ class EarningCategoryResource extends Resource
         return $table
             ->columns([
                 Stack::make([
-                    CustomIconColumn::make('icon'),
+                    CustomIconColumn::make('icon')
+                        ->bg_color(function ($record) {
+                            return $record->bg_color;
+                        })
+                        ->icon(function ($record) {
+                            return $record->icon;
+                        })
+                        ->icon_color(function ($record) {
+                            return $record->icon_color;
+                        }),
                     TextColumn::make('name')
                         ->label('Name')
                         ->searchable()

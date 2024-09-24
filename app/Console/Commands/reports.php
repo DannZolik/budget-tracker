@@ -11,7 +11,7 @@ class reports extends Command
      *
      * @var string
      */
-    protected $signature = 'app:reports';
+    protected $signature = 'coinKeeper:reports';
 
     /**
      * The console command description.

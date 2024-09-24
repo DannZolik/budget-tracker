@@ -28,8 +28,8 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('')
-//            ->passwordReset() // enable when you need. do not forget to set up email
-//            ->emailVerification() // enable when you need. do not forget to set up email
+            //            ->passwordReset() // enable when you need. do not forget to set up email
+            //            ->emailVerification() // enable when you need. do not forget to set up email
             ->login()
             ->colors([
                 'primary' => '#15803d',
@@ -65,6 +65,9 @@ class AdminPanelProvider extends PanelProvider
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
             ])
+            ->sidebarCollapsibleOnDesktop()
+            ->globalSearch()
+            ->viteTheme('resources/css/filament/app/theme.css')
             ->authMiddleware([
                 Authenticate::class,
             ]);

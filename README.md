@@ -10,6 +10,10 @@
 
 5. php artisan coinKeeper:fresh
 
+6. npm i
+
+7. npm run build
+
 
 bus labi!
 

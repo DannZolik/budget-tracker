@@ -13,6 +13,7 @@ class EarningCategory extends Model
         'name',
         'description',
         'icon',
+        'user_id',
         'icon_color',
         'bg_color',
     ];

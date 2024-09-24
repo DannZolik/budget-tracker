@@ -26,7 +26,7 @@ class ExpenseCategoryResource extends Resource
 {
     protected static ?string $model = ExpenseCategory::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'tabler-shopping-bag';
 
     public static function form(Form $form): Form
     {
@@ -82,6 +82,7 @@ class ExpenseCategoryResource extends Resource
                                 'lg' => 6,
                             ]),
                         IconPicker::make('icon')
+                            ->sets(['tabler'])
                             ->label('Icon')
                             ->required()
                             ->preload()

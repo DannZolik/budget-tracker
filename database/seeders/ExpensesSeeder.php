@@ -19,8 +19,7 @@ class ExpensesSeeder extends Seeder
     {
     $users = User::pluck('id')->toArray();
     $categories = ExpenseCategory::pluck('id')->toArray();
-    echo $categories[0];
-    
+
     $data = [];
     
     for ($i = 0; $i < count($users) * 6; $i++) {

@@ -31,26 +31,26 @@ class reports extends Command
         $startDate = Carbon::parse($this->argument('startDate'));
         $endDate = Carbon::parse($this->argument('endDate'));
 
-        $incomes = Earning::whereBetween('earning_date', [$startDate, $endDate])->get();
+        $earnings = Earning::whereBetween('earning_date', [$startDate, $endDate])->get();
         $expenses = Expense::whereBetween('expense_date', [$startDate, $endDate])->get();
 
 
         $this->info("Report from {$startDate->toDateString()} to {$endDate->toDateString()}");
 
-        $totalIncome = $incomes->sum('amount');
+        $totalIncome = $earnings->sum('amount');
         $totalExpense = $expenses->sum('amount');
 
         $this->info("Report from {$startDate->toDateString()} to {$endDate->toDateString()}");
 
 
-        $this->info("Incomes:");
-        foreach ($incomes as $income) {
-            $this->line(" - {$income->description}: {$income->amount} (Created at: {$income->created_at})");
+        $this->info("Earnings:");
+        foreach ($earnings as $income) {
+            $this->line(" - {$income->description}: {$income->amount} (Created at: {$income->earning_date})");
         }
 
         $this->info("Expenses:");
         foreach ($expenses as $expense) {
-            $this->line(" - {$expense->description}: {$expense->amount} (Created at: {$expense->created_at})");
+            $this->line(" - {$expense->description}: {$expense->amount} (Created at: {$expense->expense_date})");
         }
         
         $this->info("Total Income: $totalIncome");

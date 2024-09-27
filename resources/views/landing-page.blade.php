@@ -1,7 +1,7 @@
 @extends('layouts.landing-page-layout')
 
 @section('content')
-    <div class="flex items-center gap-16 mb-20">
+    <div class="flex items-center gap-16 mb-20 mt-28">
         <div class="">
             <p class="text-white text-xl mb-4">
                 Take control of your finances effortlessly with <strong>CoinKeeper</strong> – the ultimate money tracking

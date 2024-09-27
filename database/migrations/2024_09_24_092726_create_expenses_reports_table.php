@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('expenses_reports', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->float('sum');
             $table->date('from_date');
             $table->date('to_date');

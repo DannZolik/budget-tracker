@@ -9,4 +9,11 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateExpenses extends CreateRecord
 {
     protected static string $resource = ExpensesResource::class;
+
+    protected function getRedirectUrl(): string
+    {
+
+    return $this->getResource()::getUrl('index');
+
+    }
 }

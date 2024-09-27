@@ -9,4 +9,11 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateEarnings extends CreateRecord
 {
     protected static string $resource = EarningsResource::class;
+
+    protected function getRedirectUrl(): string
+    {
+
+    return $this->getResource()::getUrl('index');
+
+    }
 }

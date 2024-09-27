@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\ExpensesResource\Pages;
 use App\Filament\Resources\ExpensesResource\RelationManagers;
 use App\Models\Expenses;
+use App\Models\ExpenseCategory;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -14,6 +15,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Select;
 
 class ExpensesResource extends Resource
 {
@@ -21,13 +23,19 @@ class ExpensesResource extends Resource
 
     protected static ?string $navigationIcon = 'tabler-brand-shopee';
 
+    
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 TextInput::make('name')->required(),
                 TextInput::make('description'),
-                TextInput::make('category_id'),
+                Select::make('category_id')
+                    ->label('Category')
+                    ->options(ExpenseCategory::where('user_id', auth()->id())->pluck('name', 'id'))
+                    ->preload()
+                    ->searchable(),
                 TextInput::make('sum')->required(),
             ]);
     }
@@ -38,7 +46,7 @@ class ExpensesResource extends Resource
             ->columns([
                 TextColumn::make('name'),
                 TextColumn::make('description'),
-                TextColumn::make('category_id'),
+                TextColumn::make('expensesCategory.name'),
                 TextColumn::make('sum'),
             ])
             ->filters([

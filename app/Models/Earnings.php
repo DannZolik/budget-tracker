@@ -21,9 +21,9 @@ class Earnings extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function EarningsCategory()
+    public function earningsCategory()
     {
-        return $this->belongsTo(EarningCategory::class);
+        return $this->belongsTo(EarningCategory::class, 'category_id');
     }
 }
 

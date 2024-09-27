@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\EarningsResource\Pages;
 use App\Filament\Resources\EarningsResource\RelationManagers;
 use App\Models\Earnings;
+use App\Models\EarningCategory;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -14,6 +15,8 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Select;
+
 
 class EarningsResource extends Resource
 {
@@ -27,7 +30,11 @@ class EarningsResource extends Resource
             ->schema([
                 TextInput::make('name')->required(),
                 TextInput::make('description'),
-                TextInput::make('category_id'),
+                Select::make('category_id')
+                    ->label('Category')
+                    ->options(EarningCategory::where('user_id', auth()->id())->pluck('name', 'id'))
+                    ->preload()
+                    ->searchable(),
                 TextInput::make('sum')->required(),
             ]);
     }
@@ -38,7 +45,7 @@ class EarningsResource extends Resource
             ->columns([
                 TextColumn::make('name'),
                 TextColumn::make('description'),
-                TextColumn::make('category_id'),
+                TextColumn::make('earningsCategory.name'),
                 TextColumn::make('sum'),
             ])
             ->filters([

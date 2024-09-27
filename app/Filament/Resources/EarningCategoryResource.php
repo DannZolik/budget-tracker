@@ -26,7 +26,7 @@ class EarningCategoryResource extends Resource
 {
     protected static ?string $model = EarningCategory::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'tabler-wallet';
 
     public static function form(Form $form): Form
     {
@@ -82,6 +82,7 @@ class EarningCategoryResource extends Resource
                                 'lg' => 6,
                             ]),
                         IconPicker::make('icon')
+                            ->sets(['tabler'])
                             ->label('Icon')
                             ->required()
                             ->preload()

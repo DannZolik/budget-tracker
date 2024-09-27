@@ -27,7 +27,7 @@ class AdminPanelProvider extends PanelProvider
         return $panel
             ->default()
             ->id('admin')
-            ->path('')
+            ->path('app')
             //            ->passwordReset() // enable when you need. do not forget to set up email
             //            ->emailVerification() // enable when you need. do not forget to set up email
             ->login()

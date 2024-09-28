@@ -1,4 +1,4 @@
-<header class="fixed top-0 left-0 w-full bg-[#0F141A] z-50 px-32">
+<header class="fixed top-0 left-0 w-full bg-[#0F141A] z-1 px-32">
     <nav class="mx-auto flex items-center justify-between py-8" aria-label="Global">
         <div class="flex lg:flex-1">
             <a href="/">

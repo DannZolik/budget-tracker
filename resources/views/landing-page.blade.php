@@ -1,8 +1,14 @@
 @extends('layouts.landing-page-layout')
 
 @section('content')
-    <div class="flex items-center gap-16 mb-20 mt-28">
-        <div class="">
+    <img src="{{ asset('landing-images/green_circle.png') }}" alt="" class="h-96 w-96 absolute -top-48 left-32"
+        style="filter: blur(120px); z-index: -5;">
+
+    <div class="grid gap-16 mb-20 mt-28 lg:grid-cols-2 lg:items-center">
+        <img src="{{ asset('landing-images/1.jpg') }}" alt=""
+            class="order-1 lg:order-2 w-96 h-96 rounded-lg mt-8 lg:mt-0">
+
+        <div class="order-2 lg:order-1 text-center lg:text-left">
             <p class="text-white text-xl mb-4">
                 Take control of your finances effortlessly with <strong>CoinKeeper</strong> – the ultimate money tracking
                 app. Keep track of your income and expenses, set personal budgets, and monitor your financial goals all in
@@ -15,8 +21,6 @@
                 Log In
             </a>
         </div>
-
-        <img src="{{ asset('landing-images/1.jpg') }}" alt="" class="w-96 h-96 rounded-lg">
     </div>
 
     <div class="text-white text-center mb-20 pt-4" id="about-us">
@@ -29,6 +33,9 @@
             CoinKeeper is designed to support every step of your financial journey, making it less stressful and more
             rewarding.</p>
     </div>
+
+    <img src="{{ asset('landing-images/green_circle.png') }}" alt="" class="h-96 w-96 absolute"
+        style="filter: blur(120px); z-index: -5; top: 84vh; left: -16vw;">
 
     <div class="text-white pt-4 mb-20" id="benefits">
         <h3 class="text-3xl font-bold mb-12 text-center">Benefits</h3>
@@ -43,6 +50,9 @@
             </p>
         </div>
 
+        <img src="{{ asset('landing-images/green_circle.png') }}" alt="" class="h-96 w-96 absolute"
+            style="filter: blur(120px); z-index: -5; top: 140vh; right: -20vw;">
+
         <div class="flex items-center gap-16">
             <p class="text-white text-xl mb-4">
                 <strong>Secure Data Protection:</strong> Your financial information is safe with our top-level encryption
@@ -52,18 +62,23 @@
                 safeguarded. Your trust is our priority, and we work to ensure that your information stays protected.
             </p>
 
-
             <img src="{{ asset('landing-images/3.jpg') }}" alt="" class="w-96 h-96 rounded-lg">
         </div>
+
+        <img src="{{ asset('landing-images/green_circle.png') }}" alt="" class="h-96 w-96 absolute"
+            style="filter: blur(120px); z-index: -5; top: 228vh; left: -20vw;">
     </div>
 
     <div class="text-white text-center mb-20 pt-4" id="contact-us">
         <h3 class="text-3xl font-bold mb-4">Contact Us</h3>
-        <p class="mx-24 text-lg">Have questions or need assistance? Our team is here to help! Feel free to reach out to us at
+        <p class="mx-24 text-lg">Have questions or need assistance? Our team is here to help! Feel free to reach out to us
+            at
             <strong>support@dannzolik.com</strong>, and we'll get back to you as soon as possible. Whether it's feedback or
             suggestions, we're always happy to hear from you! Our dedicated support team is available to
-            answer your questions, resolve any issues, and make your experience with CoinKeeper as smooth and rewarding as possible.
-            Don't hesitate to connect with us – we value your input and are here to make a difference in your financial journey.
+            answer your questions, resolve any issues, and make your experience with CoinKeeper as smooth and rewarding as
+            possible.
+            Don't hesitate to connect with us – we value your input and are here to make a difference in your financial
+            journey.
         </p>
     </div>
 @endsection

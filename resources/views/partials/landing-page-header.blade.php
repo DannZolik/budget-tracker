@@ -1,8 +1,8 @@
-<header class="fixed top-0 left-0 w-full bg-[#0F141A] z-1 px-32">
+<header class="w-full px-32">
     <nav class="mx-auto flex items-center justify-between py-8" aria-label="Global">
         <div class="flex lg:flex-1">
             <a href="/">
-                <h3 class="text-white text-2xl font-bold duration-300 hover:text-[#15803D]">coinKeeper</h3>
+                <h3 class="text-white text-2xl font-bold">coinKeeper</h3>
             </a>
         </div>
         <div class="flex space-x-8 text-white">

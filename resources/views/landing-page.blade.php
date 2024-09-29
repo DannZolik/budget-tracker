@@ -1,108 +1,85 @@
 @extends('layouts.landing-page-layout')
 
 @section('content')
-<div class="lg:hidden" role="dialog" aria-modal="true">
-        <!-- Background backdrop, show/hide based on slide-over state. -->
-        <div class="fixed inset-0 z-10"></div>
-        <div
-            class="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
-            <div class="flex items-center justify-between">
-                <a href="#" class="-m-1.5 p-1.5">
-                    <span class="sr-only">Your Company</span>
-                    <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                        alt="">
-                </a>
-                <button type="button" class="-m-2.5 rounded-md p-2.5 text-gray-700">
-                    <span class="sr-only">Close menu</span>
-                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                        aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                </button>
-            </div>
-            <div class="mt-6 flow-root">
-                <div class="-my-6 divide-y divide-gray-500/10">
-                    <div class="space-y-2 py-6">
-                        <a href="#"
-                            class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Product</a>
-                        <a href="#"
-                            class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Features</a>
-                        <a href="#"
-                            class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Marketplace</a>
-                        <a href="#"
-                            class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Company</a>
-                    </div>
-                    <div class="py-6">
-                        <a href="#"
-                            class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Log
-                            in</a>
-                    </div>
-                </div>
-            </div>
+    <!-- First Blurred Image -->
+    <img src="{{ asset('landing-images/green_circle.png') }}" alt="" id="image-1"
+        class="h-96 w-96 absolute -top-48 -left-20 lg:left-32">
+
+    <div class="flex flex-col lg:flex-row mb-20 mt-4 items-center justify-between gap-12">
+        <img src="{{ asset('landing-images/1.jpg') }}" alt=""
+            class="order-1 lg:order-2 w-56 h-56 md:w-96 md:h-96 rounded-lg mt-8 lg:mt-0 mx-auto lg:mx-0">
+
+        <div class="order-2 lg:order-1 text-center lg:text-left">
+            <p class="text-white text-xl mb-4">
+                Take control of your finances effortlessly with <strong>CoinKeeper</strong> – the ultimate money tracking
+                app. Keep track of your income and expenses, set personal budgets, and monitor your financial goals all in
+                one place. With intuitive charts and insights, CoinKeeper helps you visualize your spending habits and make
+                informed financial decisions.
+            </p>
+
+            <a href="/app/login"
+                class="inline-block px-6 py-2 duration-300 text-white bg-[#15803D] hover:bg-white hover:text-[#0F141A] font-semibold rounded-lg transition">
+                Log In
+            </a>
         </div>
     </div>
-</header>
 
-
-
-<!-- Main Hero Section -->
-<section class="py-12 px-4 md:px-12 lg:px-24 bg-gradient-to-r from-green-600 to-green-800">
-    <div class="flex flex-col md:flex-row items-center">
-      <!-- Left Column: Text and Button -->
-      <div class="md:w-1/2 text-left">
-        <h2 class="text-3xl font-bold mb-4 text-white">Manage your finances with ease using CoinKeeper</h2>
-        <p class="text-lg mb-6 text-white">A simple app for tracking spending and earning</p>
-        <button class="bg-green-500 text-white py-2 px-6 rounded-lg font-bold hover:bg-green-400 transition duration-300">Log In</button>
-      </div>
-
-      <!-- Right Column: Image -->
-      <div class="mt-8 md:mt-0 md:w-1/2 flex justify-center">
-        <img src="https://via.placeholder.com/200" alt="Wallet Image" class="rounded-lg shadow-md">
-      </div>
+    <div class="text-white text-center mb-20 pt-4" id="about-us">
+        <h3 class="text-3xl font-bold mb-4">About Us</h3>
+        <p class="mx-4 lg:mx-24 text-lg">
+            We are a passionate startup from Latvia dedicated to helping people take control of their
+            finances. At CoinKeeper, our mission is to provide simple and effective tools that make managing money easier for everyone.
+            We believe that financial clarity empowers people to achieve their goals, and we’re here to make that journey
+            smoother for you. Whether you’re saving for a big dream, managing daily expenses, or planning for the future,
+            CoinKeeper is designed to support every step of your financial journey, making it less stressful and more
+            rewarding.
+        </p>
     </div>
-  </section>
 
+    <!-- Second Blurred Image -->
+    <img src="{{ asset('landing-images/green_circle.png') }}" alt="" id="image-2" class="h-96 w-96 absolute">
 
-  <!-- About Us -->
-  <section class="py-12 px-6 md:px-24">
-    <h3 class="text-2xl font-bold text-center mb-4">About Us</h3>
-    <p class="text-lg text-center max-w-3xl mx-auto">We are a passionate startup from Latvia dedicated to helping people take control of their finances. At <span class="font-semibold">CoinKeeper</span>, our mission is to provide simple and effective tools that make managing money easier for everyone.</p>
-  </section>
+    <div class="text-white pt-4 mb-20" id="benefits">
+        <h3 class="text-3xl font-bold mb-12 text-center">Benefits</h3>
 
-<!-- Benefits Section 1 -->
-<section class="py-12 bg-gray-800 px-6 md:px-24">
-    <h3 class="text-2xl font-bold text-center text-white mb-8 uppercase">Benefits</h3>
+        <div class="flex flex-col lg:flex-row items-center justify-between gap-12 mb-12">
+            <img src="{{ asset('landing-images/2.jpg') }}" alt="" class="w-56 h-56 md:w-96 md:h-96 rounded-lg">
 
-    <!-- First Benefit (Default: Image on the left, Text on the right) -->
-    <div class="flex flex-col md:flex-row items-start space-x-0 md:space-x-4">
-      <img src="https://via.placeholder.com/100" alt="Savings Image" class="w-20 h-20 rounded-lg mb-4 md:mb-0">
-      <div>
-        <h4 class="font-bold text-xl mb-2 text-white uppercase">Visual Insights</h4>
-        <p class="text-white">View your spending habits through easy-to-read charts and graphs, making financial planning simple and intuitive.</p>
-      </div>
+            <p class="text-white text-xl mb-4 text-center lg:text-right">
+                <strong>Visual Insights:</strong> View your spending habits through easy-to-read charts and graphs, making
+                financial planning simple and intuitive. With CoinKeeper, you get a clear picture of where your money is
+                going, helping you identify patterns and areas for improvement.
+            </p>
+        </div>
+
+        <!-- Third Blurred Image -->
+        <img src="{{ asset('landing-images/green_circle.png') }}" alt="" id="image-3" class="h-96 w-96 absolute">
+
+        <div class="flex items-center gap-12 flex-col lg:flex-row justify-between">
+            <p class="text-white text-xl mb-4 order-2 lg:order-1 text-center lg:text-left">
+                <strong>Secure Data Protection:</strong> Your financial information is safe with our top-level encryption
+                and privacy measures, ensuring secure access to your data at all times. With features
+                like two-factor authentication, you can rest easy knowing that your personal and financial details are
+                safeguarded. Your trust is our priority, and we work to ensure that your information stays protected.
+            </p>
+
+            <img src="{{ asset('landing-images/3.jpg') }}" alt="" id="image-4" class="w-56 h-56 md:w-96 md:h-96 rounded-lg order-1 lg:order-2">
+        </div>
+
+        <!-- Fourth Blurred Image -->
+        <img src="{{ asset('landing-images/green_circle.png') }}" alt="" id="image-5" class="h-96 w-96 absolute">
     </div>
-  </section>
 
-  <!-- Benefits Section 2 -->
-  <section class="py-12 bg-gray-800 px-6 md:px-24">
-    <!-- Second Benefit (Swapped: Image on the right, Text on the left) -->
-    <div class="flex flex-col md:flex-row-reverse items-start space-x-0 md:space-x-reverse md:space-x-4">
-      <img src="https://via.placeholder.com/100" alt="Secure Data" class="w-20 h-20 rounded-lg mb-4 md:mb-0">
-      <div>
-        <h4 class="font-bold text-xl mb-2 text-white uppercase">Secure Data Protection</h4>
-        <p class="text-white">Your financial information is safe with our top-level encryption and privacy measures, ensuring secure access to your data at all times.</p>
-      </div>
+    <div class="text-white text-center mb-20 pt-4" id="contact-us">
+        <h3 class="text-3xl font-bold mb-4">Contact Us</h3>
+        <p class="mx-4 lg:mx-24 text-lg">
+            Have questions or need assistance? Our team is here to help! Feel free to reach out to us at
+            <strong>support@dannzolik.com</strong>, and we'll get back to you as soon as possible. Whether it's feedback or
+            suggestions, we're always happy to hear from you! Our dedicated support team is available to
+            answer your questions, resolve any issues, and make your experience with CoinKeeper as smooth and rewarding as
+            possible.
+            Don't hesitate to connect with us – we value your input and are here to make a difference in your financial
+            journey.
+        </p>
     </div>
-  </section>
-
-
-
-  <!-- Contact Us -->
-  <section class="py-12 px-6 md:px-24 text-center">
-    <h3 class="text-2xl font-bold mb-4">Contact Us</h3>
-    <p class="text-lg mb-4">Have questions or need assistance? Our team is here to help! Feel free to reach out to us at <a href="mailto:support@dannzolik.com" class="text-green-400 hover:underline">support@dannzolik.com</a>, and we'll get back to you as soon as possible.</p>
-    <p class="text-sm text-gray-500">Whether it's feedback, support, or suggestions, we're always happy to hear from you!</p>
-  </section>
-
-  
 @endsection

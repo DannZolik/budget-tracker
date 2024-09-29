@@ -7,14 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @filamentStyles
     @vite('resources/css/app.css')
-
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
-
     <title>coinKeeper</title>
 </head>
 
 <body style="background-color: #0F141A;">
-    <div class="w-full h-full flex flex-col px-32">
+    <div class="w-full h-full flex flex-col px-4 md:px-16 lg:px-32">
         @livewire('notifications')
 
         <!-- Header Section -->
@@ -27,9 +25,7 @@
 
         <!-- Footer Section -->
         @include('partials.landing-page-footer')
-
         @livewire('notifications')
-
         @filamentScripts
         @vite('resources/js/app.js')
     </div>

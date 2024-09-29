@@ -6,7 +6,7 @@
         <a href="#contact-us" class="text-md font-semibold duration-300 hover:text-[#15803D]">Contact Us</a>
     </div>
 
-    <div class="flex justify-center space-x-12">
+    <div class="flex justify-center space-x-4 lg:space-x-12">
       <a href="#" class="text-white duration-300 hover:text-[#15803D]">
         <x-tabler-brand-facebook class="h-9 w-9"/>
       </a>

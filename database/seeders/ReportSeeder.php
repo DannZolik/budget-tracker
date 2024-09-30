@@ -14,10 +14,11 @@ class ReportSeeder extends Seeder
     public function run(): void
     {
         if (App::environment('local', 'development')) {
-            Artisan::call('coinKeeper:reports yesterday');
-            Artisan::call('coinKeeper:reports lastweek');
-            Artisan::call('coinKeeper:reports thismonth');
-            Artisan::call('coinKeeper:reports lastmonth');
+            $periods = ['yesterday', 'lastweek', 'thismonth', 'lastmonth'];
+            
+            foreach ($periods as $period) {
+                Artisan::call("coinKeeper:reports {$period}");
+            }
         } else {
             $this->command->error('This command can only be run in a development environment.');
         }

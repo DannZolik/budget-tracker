@@ -1,0 +1,92 @@
+html, body {
+    overflow-x: hidden;
+}
+
+/* First Blurred Image */
+#image-1 {
+    position: absolute;
+    width: 24rem;   /* Matches h-96 */
+    height: 24rem;  /* Matches w-96 */
+    top: -12rem;    /* Equivalent to -top-48 */
+    left: -5rem;    /* Equivalent to -left-20 */
+    filter: blur(120px);
+    z-index: -5;
+}
+
+@media (min-width: 1024px) {
+    #image-1 {
+        left: 8rem;  /* Equivalent to lg:left-32 */
+    }
+}
+
+/* Second Blurred Image */
+#image-2 {
+    position: absolute;
+    width: 24rem;
+    height: 24rem;
+    top: 84vh;
+    left: -16vw;
+    filter: blur(120px);
+    z-index: -5;
+}
+
+@media (max-width: 1023px) {
+    #image-2 {
+        top: 90vh;
+    }
+}
+
+@media (max-width: 639px) {
+    #image-2 {
+        top: 110vh;
+        left: -52vw;
+    }
+}
+
+/* Third Blurred Image */
+#image-3 {
+    position: absolute;
+    width: 24rem;
+    height: 24rem;
+    top: 140vh;
+    right: -20vw;
+    filter: blur(120px);
+    z-index: -5;
+}
+
+@media (max-width: 1023px) {
+    #image-3 {
+        top: 180vh;
+    }
+}
+
+@media (max-width: 639px) {
+    #image-3 {
+        top: 220vh;
+        right: -40vw;
+    }
+}
+
+/* Fourth Blurred Image */
+#image-5 {
+    position: absolute;
+    width: 24rem;
+    height: 24rem;
+    top: 228vh;
+    left: -20vw;
+    filter: blur(120px);
+    z-index: -5;
+}
+
+@media (max-width: 1023px) {
+    #image-5 {
+        top: 286vh;
+    }
+}
+
+@media (max-width: 639px) {
+    #image-5 {
+        top: 340vh;
+        left: -52vw;
+    }
+}

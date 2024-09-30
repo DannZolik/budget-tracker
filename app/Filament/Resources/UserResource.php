@@ -15,8 +15,8 @@ use App\Filament\Resources\UserResource\Pages\CreateUser;
 class UserResource extends Resource
 {
     protected static ?string $model = User::class;
-
-    protected static ?string $navigationIcon = 'tabler-users';
+    // protected static ?string $navigationIcon = 'tabler-users';
+    protected static ?string $navigationGroup = 'System';
 
     public static function form(Form $form): Form
     {

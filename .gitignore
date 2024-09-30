@@ -38,3 +38,4 @@ package-lock.json
 public/css/filament/forms/forms.css
 public/js/filament/forms/components/date-time-picker.js
 public/js/filament/forms/components/file-upload.js
+public/css/bezhansalleh/filament-language-switch/filament-language-switch.css

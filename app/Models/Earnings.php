@@ -12,6 +12,7 @@ class Earnings extends Model
     protected $fillable = [
         'name',
         'category_id',
+        'user_id',
         'sum',
         'description',
     ];

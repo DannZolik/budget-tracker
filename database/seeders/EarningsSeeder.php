@@ -18,8 +18,6 @@ class EarningsSeeder extends Seeder
     {
     $users = User::pluck('id')->toArray();
     $categories = Earnings::pluck('id')->toArray();
-    $int= mt_rand(1262055681,1262055681);
-    $string = date("Y-m-d H:i:s",$int);
     $data = [];
     
     for ($i = 0; $i < count($users) * 6; $i++) {

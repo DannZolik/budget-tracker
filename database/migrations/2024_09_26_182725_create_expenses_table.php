@@ -11,9 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::dropIfExists(('expenses'));
         Schema::create('expenses', function (Blueprint $table) {
-    
             $table->id();
             $table->string('name', length:255);
             $table->text('description')->nullable();

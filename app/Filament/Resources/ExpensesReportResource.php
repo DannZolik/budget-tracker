@@ -18,8 +18,8 @@ use Filament\Tables\Columns\TextColumn;
 class ExpensesReportResource extends Resource
 {
     protected static ?string $model = ExpensesReport::class;
-
-    protected static ?string $navigationIcon = 'heroicon-o-document-minus';
+    // protected static ?string $navigationIcon = 'heroicon-o-document-minus';
+    protected static ?string $navigationGroup = 'Reports';
 
     public static function form(Form $form): Form
     {

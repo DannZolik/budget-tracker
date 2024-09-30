@@ -19,8 +19,8 @@ use Filament\Forms\Components\TextInput;
 class EarningsReportResource extends Resource
 {
     protected static ?string $model = EarningReport::class;
-
-    protected static ?string $navigationIcon = 'heroicon-o-document-plus';
+    // protected static ?string $navigationIcon = 'heroicon-o-document-plus';
+    protected static ?string $navigationGroup = 'Reports';
 
     public static function form(Form $form): Form
     {

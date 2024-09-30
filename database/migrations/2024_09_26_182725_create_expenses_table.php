@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name', length:255);
             $table->text('description')->nullable();
             $table->integer('category_id')->nullable();
+            $table->integer('user_id');
             $table->float('sum');
             $table->timestamps();
         });

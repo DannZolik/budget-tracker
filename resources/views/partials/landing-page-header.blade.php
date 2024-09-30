@@ -1,5 +1,5 @@
 <header class="w-full">
-    <nav class="mx-auto flex items-center justify-between py-4 px-4 md:px-8" aria-label="Global">
+    <nav class="mx-auto flex items-center justify-between py-4" aria-label="Global">
         <!-- Logo and Mobile Menu Button -->
         <div class="flex flex-1 items-center justify-between">
             <a href="/">

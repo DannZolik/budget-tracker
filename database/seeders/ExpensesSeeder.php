@@ -22,14 +22,14 @@ class ExpensesSeeder extends Seeder
 
         $data = [];
         
-        for ($i = 0; $i < count($users) * 6; $i++) {
+        for ($i = 0; $i < count($users) * 12; $i++) {
             $data[] = [
                 'name' => 'Expense ' . $i,
                 'user_id' => $users[$i%count($users)],
                 'category_id' => $categories[rand(1, count($categories))-1],
                 'sum' => rand(1, 100),
                 'description' => null,
-                'created_at' => Carbon::today()->subDays(rand(0, 365)),
+                'created_at' => Carbon::today()->subDays(rand(0, 60)),
             ];
         }
         

@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
-
+use Filament\Forms\Components\Select;
 
 class EarningsReportResource extends Resource
 {
@@ -26,7 +26,7 @@ class EarningsReportResource extends Resource
     {
         return $form
             ->schema([
-
+                //
             ]);
     }
 
@@ -34,15 +34,24 @@ class EarningsReportResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('user.name'),
-                TextColumn::make('from_date'),
-                TextColumn::make('to_date'),
-                TextColumn::make('sum'),
+                TextColumn::make('user.name')
+                    ->label('User Name')
+                    ->sortable(),
+                TextColumn::make('from_date')
+                    ->label('From Date')
+                    ->sortable(),
+                TextColumn::make('to_date')
+                    ->label('To Date')
+                    ->sortable(),
+                TextColumn::make('sum')
+                    ->label('Total Earnings')
+                    ->sortable(),
             ])
             ->filters([
                 //
             ])
             ->actions([
+                //
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -54,7 +63,6 @@ class EarningsReportResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
         ];
     }
 

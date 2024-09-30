@@ -16,22 +16,21 @@ class EarningsSeeder extends Seeder
      */
     public function run(): void
     {
-    $users = User::pluck('id')->toArray();
-    $categories = Earnings::pluck('id')->toArray();
-    $int= mt_rand(1262055681,1262055681);
-    $string = date("Y-m-d H:i:s",$int);
-    $data = [];
+        $users = User::pluck('id')->toArray();
+        $categories = EarningCategory::pluck('id')->toArray();
+        $data = [];
     
-    for ($i = 0; $i < count($users) * 6; $i++) {
-    $data[] = [
-    'name' => 'Expense ' . $i,
-    'category_id' => rand(1,9),
-    'sum' => rand(1, 100),
-    'description' => null,
-    'created_at' => Carbon::today()->subDays(rand(0, 365)),
-    ];
-    }
+        for ($i = 0; $i < count($users) * 6; $i++) {
+            $data[] = [
+                'name' => 'Expense ' . $i,
+                'user_id' => $users[$i%count($users)],
+                'category_id' => $categories[rand(1, count($categories))-1],
+                'sum' => rand(1, 100),
+                'description' => null,
+                'created_at' => Carbon::today()->subDays(rand(0, 365)),
+            ];
+        }
     
-    Earnings::insert($data);
+        Earnings::insert($data);
     }
 }

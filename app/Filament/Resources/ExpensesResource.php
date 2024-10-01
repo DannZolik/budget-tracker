@@ -23,7 +23,7 @@ class ExpensesResource extends Resource
 
     protected static ?string $navigationIcon = 'tabler-brand-shopee';
 
-    
+
 
     public static function form(Form $form): Form
     {

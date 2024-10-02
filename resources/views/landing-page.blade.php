@@ -67,7 +67,7 @@
         </div>
 
 <!-- Frequently Asked Questions Section -->
-<section id="faq" class="pt-4">
+<section id="faq" class="pt-4 mb-20">
     <h2 class="text-3xl font-bold text-center text-white mb-8">Frequently Asked Questions</h2>
     <div class="max-w-4xl mx-auto">
         <!-- FAQ Item 1 -->
@@ -137,6 +137,19 @@
         </div>
     </div>
 </section>
+
+<div class="text-white text-center mb-20 pt-4" id="contact-us">
+    <h3 class="text-3xl font-bold mb-4">Contact Us</h3>
+    <p class="mx-4 lg:mx-24 text-lg">
+        Have questions or need assistance? Our team is here to help! Feel free to reach out to us at
+        <strong>support@dannzolik.com</strong>, and we'll get back to you as soon as possible. Whether it's feedback or
+        suggestions, we're always happy to hear from you! Our dedicated support team is available to
+        answer your questions, resolve any issues, and make your experience with CoinKeeper as smooth and rewarding as
+        possible.
+        Don't hesitate to connect with us – we value your input and are here to make a difference in your financial
+        journey.
+    </p>
+</div>
 
 
 

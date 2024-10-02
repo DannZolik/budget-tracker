@@ -3,8 +3,8 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use App\Models\Earning;
-use App\Models\Expense;
+use App\Models\Earnings;
+use App\Models\Expenses;
 use App\Models\EarningReport;
 use App\Models\ExpensesReport;
 use Carbon\Carbon;
@@ -49,6 +49,7 @@ class reports extends Command
                 $startDate = Carbon::now()->subMonth()->startOfMonth();
                 $endDate = Carbon::now()->subMonth()->endOfMonth();
                 break;
+
             case 'thismonth':
                 $startDate = Carbon::now()->startOfMonth();
                 $endDate = Carbon::now()->endOfMonth();
@@ -60,14 +61,14 @@ class reports extends Command
         }
 
         // Fetch earnings and expenses grouped by user
-        $earningsByUser = Earning::whereBetween('earning_date', [$startDate, $endDate])
+        $earningsByUser = Earnings::whereBetween('created_at', [$startDate, $endDate])
                                  ->groupBy('user_id')
-                                 ->selectRaw('user_id, SUM(amount) as total_earnings')
+                                 ->selectRaw('user_id, SUM(sum) as total_earnings')
                                  ->get();
 
-        $expensesByUser = Expense::whereBetween('expense_date', [$startDate, $endDate])
+        $expensesByUser = Expenses::whereBetween('created_at', [$startDate, $endDate])
                                  ->groupBy('user_id')
-                                 ->selectRaw('user_id, SUM(amount) as total_expenses')
+                                 ->selectRaw('user_id, SUM(sum) as total_expenses')
                                  ->get();
 
         // Saving Earning Reports to Database

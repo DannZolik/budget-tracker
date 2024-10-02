@@ -17,10 +17,9 @@ class MainSeeder extends Seeder
             UserSeeder::class,
             EarningCategorySeeder::class,
             ExpenseCategorySeeder::class,
-            // EarningSeeder::class,
-            // ExpenseSeeder::class,
-            ExpensesReportSeeder::class,
-            EarningReportSeeder::class,
+            EarningsSeeder::class,
+            ExpensesSeeder::class,
+            ReportSeeder::class,
         ]);
     }
 }

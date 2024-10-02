@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::dropIfExists(('earnings'));
         Schema::create('earnings', function (Blueprint $table) {
             $table->id();
             $table->string('name', length:255);
             $table->text('description')->nullable();
+            $table->integer('user_id');
             $table->integer('category_id')->nullable();
             $table->float('sum');
             $table->timestamps();

@@ -20,8 +20,9 @@ use Filament\Forms\Components\Select;
 class ExpensesResource extends Resource
 {
     protected static ?string $model = Expenses::class;
-    // protected static ?string $navigationIcon = 'tabler-brand-shopee';
+    protected static ?string $navigationIcon = 'tabler-brand-shopee';
     protected static ?string $navigationGroup = 'Expenses';
+
 
     public static function form(Form $form): Form
     {

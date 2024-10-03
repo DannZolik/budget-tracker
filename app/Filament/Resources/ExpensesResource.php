@@ -16,6 +16,8 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Select;
+use Illuminate\Support\Facades\Auth;
+use Filament\Forms\Components\Hidden;
 
 class ExpensesResource extends Resource
 {
@@ -37,6 +39,10 @@ class ExpensesResource extends Resource
                     ->preload()
                     ->searchable(),
                 TextInput::make('sum')->required(),
+                Hidden::make('user_id')
+                ->default(function () {
+                    return Auth::id();
+                }),
             ]);
     }
 
@@ -44,10 +50,10 @@ class ExpensesResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('name'),
+                TextColumn::make('name')->sortable(),
                 TextColumn::make('description'),
-                TextColumn::make('expensesCategory.name'),
-                TextColumn::make('sum'),
+                TextColumn::make('expensesCategory.name')->sortable(),
+                TextColumn::make('sum')->sortable(),
             ])
             ->filters([
                 //
@@ -55,6 +61,9 @@ class ExpensesResource extends Resource
             ->actions([
                 Tables\Actions\EditAction::make(),
             ])
+            ->modifyQueryUsing(function (Builder $query) {
+                return $query->where('user_id', Auth::id());
+            })
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),

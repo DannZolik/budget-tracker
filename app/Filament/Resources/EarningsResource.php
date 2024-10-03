@@ -16,6 +16,9 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Select;
+use Illuminate\Support\Facades\Auth;
+use Filament\Forms\Components\Hidden;
+
 
 
 class EarningsResource extends Resource
@@ -36,6 +39,10 @@ class EarningsResource extends Resource
                     ->preload()
                     ->searchable(),
                 TextInput::make('sum')->required(),
+                Hidden::make('user_id')
+                ->default(function () {
+                    return Auth::id();
+                }),
             ]);
     }
 
@@ -43,10 +50,11 @@ class EarningsResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('name'),
+                TextColumn::make('name')
+                ->sortable(),
                 TextColumn::make('description'),
-                TextColumn::make('earningsCategory.name'),
-                TextColumn::make('sum'),
+                TextColumn::make('earningsCategory.name')->sortable(),
+                TextColumn::make('sum')->sortable(),
             ])
             ->filters([
                 //
@@ -54,6 +62,9 @@ class EarningsResource extends Resource
             ->actions([
                 Tables\Actions\EditAction::make(),
             ])
+            ->modifyQueryUsing(function (Builder $query) {
+                return $query->where('user_id', Auth::id());
+            })
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),

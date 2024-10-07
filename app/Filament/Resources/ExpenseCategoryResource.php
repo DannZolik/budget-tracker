@@ -25,8 +25,8 @@ use App\Filament\Resources\ExpenseCategoryResource\Pages;
 class ExpenseCategoryResource extends Resource
 {
     protected static ?string $model = ExpenseCategory::class;
-
     protected static ?string $navigationIcon = 'tabler-shopping-bag';
+    protected static ?string $navigationGroup = 'Expenses';
 
     public static function form(Form $form): Form
     {

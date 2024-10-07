@@ -9,5 +9,6 @@ export default {
         './resources/views/*.blade.php',
         './vendor/filament/**/*.blade.php',
         './resources/views/filament/**/*.blade.php',
+        './resources/views/filament/widgets/*.blade.php',
     ],
 }

@@ -9,6 +9,8 @@ use Filament\Navigation\MenuItem;
 use Filament\Support\Colors\Color;
 use Illuminate\Support\Facades\Auth;
 use Filament\Http\Middleware\Authenticate;
+use App\Filament\Widgets\CreateEarningWidget;
+use App\Filament\Widgets\CreateExpenseWidget;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Routing\Middleware\SubstituteBindings;
@@ -52,7 +54,8 @@ class AdminPanelProvider extends PanelProvider
             ->globalSearch()
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
-                //
+                CreateExpenseWidget::class,
+                CreateEarningWidget::class,
             ])
             ->middleware([
                 EncryptCookies::class,

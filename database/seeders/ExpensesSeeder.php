@@ -8,7 +8,7 @@ use App\Models\User;
 use App\Models\Expenses;
 use App\Models\ExpenseCategory;
 use Carbon\Carbon;
-
+use Faker\Factory as Faker;
 
 class ExpensesSeeder extends Seeder
 {
@@ -19,7 +19,7 @@ class ExpensesSeeder extends Seeder
     {
         $users = User::pluck('id')->toArray();
         $categories = ExpenseCategory::pluck('id')->toArray();
-
+        $faker = Faker::create('en_US');
         $data = [];
         
         for ($i = 0; $i < count($users) * 12; $i++) {
@@ -28,7 +28,7 @@ class ExpensesSeeder extends Seeder
                 'user_id' => $users[$i%count($users)],
                 'category_id' => $categories[rand(1, count($categories))-1],
                 'sum' => rand(1, 100),
-                'description' => null,
+                'description' => $faker->text(180),
                 'created_at' => Carbon::today()->subDays(rand(0, 60)),
             ];
         }

@@ -12,6 +12,7 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
@@ -50,9 +51,10 @@ class ExpensesResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('name')->sortable(),
-                TextColumn::make('description'),
                 TextColumn::make('expensesCategory.name')->sortable(),
                 TextColumn::make('sum')->sortable(),
+                TextColumn::make('created_at')->label('Date')->sortable(),
+                TextColumn::make('description')->limit(50),
             ])
             ->filters([
                 //

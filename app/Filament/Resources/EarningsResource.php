@@ -49,9 +49,10 @@ class EarningsResource extends Resource
             ->columns([
                 TextColumn::make('name')
                 ->sortable(),
-                TextColumn::make('description'),
                 TextColumn::make('earningsCategory.name')->sortable(),
                 TextColumn::make('sum')->sortable(),
+                TextColumn::make('created_at')->label('Date')->sortable(),
+                TextColumn::make('description')->limit(50),
             ])
             ->filters([
                 //

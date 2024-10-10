@@ -25,8 +25,8 @@ use App\Filament\Resources\EarningCategoryResource\Pages;
 class EarningCategoryResource extends Resource
 {
     protected static ?string $model = EarningCategory::class;
-
-    protected static ?string $navigationIcon = 'tabler-wallet';
+    // protected static ?string $navigationIcon = 'tabler-wallet';
+    protected static ?string $navigationGroup = 'Earnings';
 
     public static function form(Form $form): Form
     {

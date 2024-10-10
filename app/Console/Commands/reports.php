@@ -49,6 +49,7 @@ class reports extends Command
                 $startDate = Carbon::now()->subMonth()->startOfMonth();
                 $endDate = Carbon::now()->subMonth()->endOfMonth();
                 break;
+
             case 'thismonth':
                 $startDate = Carbon::now()->startOfMonth();
                 $endDate = Carbon::now()->endOfMonth();

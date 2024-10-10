@@ -55,7 +55,7 @@
         <!-- Third Blurred Image -->
         <img src="{{ asset('landing-images/green_circle.png') }}" alt="" id="image-3" class="h-96 w-96 absolute">
 
-        <div class="flex items-center gap-12 flex-col lg:flex-row justify-between">
+        <div class="flex items-center gap-12 flex-col lg:flex-row justify-between mb-24">
             <p class="text-white text-xl mb-4 order-2 lg:order-1 text-center lg:text-left">
                 <strong>Secure Data Protection:</strong> Your financial information is safe with our top-level encryption
                 and privacy measures, ensuring secure access to your data at all times. With features
@@ -66,20 +66,110 @@
             <img src="{{ asset('landing-images/3.jpg') }}" alt="" id="image-4" class="w-56 h-56 md:w-96 md:h-96 rounded-lg order-1 lg:order-2">
         </div>
 
-        <!-- Fourth Blurred Image -->
-        <img src="{{ asset('landing-images/green_circle.png') }}" alt="" id="image-5" class="h-96 w-96 absolute">
+<!-- Frequently Asked Questions Section -->
+<section id="faq" class="pt-4 mb-20">
+    <h2 class="text-3xl font-bold text-center text-white mb-8">Frequently Asked Questions</h2>
+    <div class="max-w-4xl mx-auto">
+        <!-- FAQ Item 1 -->
+        <div class="mb-4">
+            <button class="w-full text-left flex justify-between items-center p-4 bg-[#0F141A] shadow rounded focus:outline-none">
+                <span class="text-lg font-semibold text-white">What is coinKeeper?</span>
+                <svg class="h-5 w-5 text-white transition-transform duration-200 transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M19 9l-7 7-7-7" />
+                </svg>
+            </button>
+            <div class="faq-content hidden p-4 bg-[#0F141A] shadow rounded mt-1">
+                <p class="text-white">coinKeeper is a comprehensive platform designed to help you manage, track, and optimize your cryptocurrency investments effortlessly. With real-time data, portfolio analytics, and secure storage solutions, coinKeeper is your all-in-one crypto companion.</p>
+            </div>
+        </div>
+        <!-- FAQ Item 2 -->
+        <div class="mb-4">
+            <button class="w-full text-left flex justify-between items-center p-4 bg-[#0F141A] shadow rounded focus:outline-none">
+                <span class="text-lg font-semibold text-white">How do I sign up for coinKeeper?</span>
+                <svg class="h-5 w-5 text-white transition-transform duration-200 transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M19 9l-7 7-7-7" />
+                </svg>
+            </button>
+            <div class="faq-content hidden p-4 bg-[#0F141A] shadow rounded mt-1">
+                <p class="text-white">Signing up is easy! Click on the 'Log In' button at the top right corner of the page, then select 'Create an Account'. Fill in your details, and you'll be managing your crypto portfolio in no time.</p>
+            </div>
+        </div>
+        <!-- FAQ Item 3 -->
+        <div class="mb-4">
+            <button class="w-full text-left flex justify-between items-center p-4 bg-[#0F141A] shadow rounded focus:outline-none">
+                <span class="text-lg font-semibold text-white">Is my data secure with coinKeeper?</span>
+                <svg class="h-5 w-5 text-white transition-transform duration-200 transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M19 9l-7 7-7-7" />
+                </svg>
+            </button>
+            <div class="faq-content hidden p-4 bg-[#0F141A] shadow rounded mt-1">
+                <p class="text-white">Absolutely! We prioritize your security by implementing advanced encryption protocols and secure authentication methods. Your data is stored securely and is never shared with third parties without your consent.</p>
+            </div>
+        </div>
+        <!-- FAQ Item 4 -->
+        <div class="mb-4">
+            <button class="w-full text-left flex justify-between items-center p-4 bg-[#0F141A] shadow rounded focus:outline-none">
+                <span class="text-lg font-semibold text-white">Can I track multiple cryptocurrencies?</span>
+                <svg class="h-5 w-5 text-white transition-transform duration-200 transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M19 9l-7 7-7-7" />
+                </svg>
+            </button>
+            <div class="faq-content hidden p-4 bg-[#0F141A] shadow rounded mt-1">
+                <p class="text-white">Yes, coinKeeper supports a wide range of cryptocurrencies. You can add multiple assets to your portfolio and monitor their performance in real-time.</p>
+            </div>
+        </div>
+        <!-- FAQ Item 5 -->
+        <div>
+            <button class="w-full text-left flex justify-between items-center p-4 bg-[#0F141A] shadow rounded focus:outline-none">
+                <span class="text-lg font-semibold text-white">How do I contact customer support?</span>
+                <svg class="h-5 w-5 text-white transition-transform duration-200 transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M19 9l-7 7-7-7" />
+                </svg>
+            </button>
+            <div class="faq-content hidden p-4 bg-[#0F141A] shadow rounded mt-1">
+                <p class="text-white">Our support team is here to help! You can reach us through the 'Contact Us' section on our website or by emailing support@coinkeeper.com.</p>
+            </div>
+        </div>
     </div>
+</section>
 
-    <div class="text-white text-center mb-20 pt-4" id="contact-us">
-        <h3 class="text-3xl font-bold mb-4">Contact Us</h3>
-        <p class="mx-4 lg:mx-24 text-lg">
-            Have questions or need assistance? Our team is here to help! Feel free to reach out to us at
-            <strong>support@dannzolik.com</strong>, and we'll get back to you as soon as possible. Whether it's feedback or
-            suggestions, we're always happy to hear from you! Our dedicated support team is available to
-            answer your questions, resolve any issues, and make your experience with CoinKeeper as smooth and rewarding as
-            possible.
-            Don't hesitate to connect with us – we value your input and are here to make a difference in your financial
-            journey.
-        </p>
-    </div>
+<div class="text-white text-center mb-20 pt-4" id="contact-us">
+    <h3 class="text-3xl font-bold mb-4">Contact Us</h3>
+    <p class="mx-4 lg:mx-24 text-lg">
+        Have questions or need assistance? Our team is here to help! Feel free to reach out to us at
+        <strong>support@dannzolik.com</strong>, and we'll get back to you as soon as possible. Whether it's feedback or
+        suggestions, we're always happy to hear from you! Our dedicated support team is available to
+        answer your questions, resolve any issues, and make your experience with CoinKeeper as smooth and rewarding as
+        possible.
+        Don't hesitate to connect with us – we value your input and are here to make a difference in your financial
+        journey.
+    </p>
+</div>
+
+
+
+    <script>
+        // FAQ Accordion Functionality
+const faqButtons = document.querySelectorAll('#faq button');
+
+faqButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+        const content = btn.nextElementSibling;
+        const icon = btn.querySelector('svg');
+
+        // Toggle the content
+        content.classList.toggle('hidden');
+
+        // Rotate the icon
+        icon.classList.toggle('rotate-180');
+    });
+});
+
+    </script>
+
 @endsection

@@ -1,5 +1,5 @@
 html, body {
-    overflow-x: hidden;
+    overflow-x: hidden !important;
 }
 
 /* First Blurred Image */
@@ -63,7 +63,7 @@ html, body {
 @media (max-width: 639px) {
     #image-3 {
         top: 220vh;
-        right: -40vw;
+        right: 0vw;
     }
 }
 

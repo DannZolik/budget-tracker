@@ -3,16 +3,12 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\EarningsResource\Pages;
-use App\Filament\Resources\EarningsResource\RelationManagers;
 use App\Models\Earnings;
 use App\Models\EarningCategory;
-use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Select;
@@ -24,8 +20,8 @@ use Filament\Forms\Components\Hidden;
 class EarningsResource extends Resource
 {
     protected static ?string $model = Earnings::class;
-
-    protected static ?string $navigationIcon = 'tabler-coins';
+    // protected static ?string $navigationIcon = 'tabler-coins';
+    protected static ?string $navigationGroup = 'Earnings';
 
     public static function form(Form $form): Form
     {

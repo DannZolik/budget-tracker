@@ -17,10 +17,6 @@
       </a>
 
       <a href="#" class="text-white duration-300 hover:text-[#15803D]">
-        <x-tabler-brand-github class="h-9 w-9"/>
-      </a>
-
-      <a href="#" class="text-white duration-300 hover:text-[#15803D]">
         <x-tabler-brand-youtube class="h-9 w-9"/>
       </a>
 

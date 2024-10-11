@@ -11,9 +11,7 @@ use Filament\Resources\Resource;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\FileUpload;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Infolists\Components\TextEntry;
-use Illuminate\Support\HtmlString;
-use Filament\Tables\Columns\TextInputColumn;
+use Filament\Forms\Components\Select;
 use App\Filament\Resources\UserResource\Pages;
 use Filament\Forms\Components\TextInput;
 
@@ -66,7 +64,8 @@ class UserResource extends Resource
                                 'md'      => 6,
                                 'lg'      => 6,
                             ]),
-                        TextInput::make('role')
+                        Select::make('role')
+                            ->relationship(name: 'role', titleAttribute: 'name')
                             ->label('Role')
                             ->required()
                             ->columnSpan([

@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\EarningsReportResource\Pages;
 use App\Filament\Resources\EarningsReportResource\RelationManagers;
 use App\Models\EarningReport;
+use App\Filament\Exports\EarningReportExporter;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -15,6 +16,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Select;
+use Filament\Tables\Actions\ExportAction;
 
 class EarningsReportResource extends Resource
 {
@@ -45,13 +47,15 @@ class EarningsReportResource extends Resource
                     ->sortable(),
                 TextColumn::make('sum')
                     ->label('Total Earnings')
-                    ->sortable(),
+                    ->sortable()
             ])
             ->filters([
                 //
             ])
             ->actions([
-                //
+                Tables\Actions\EditAction::make(),
+                ExportAction::make()
+                    ->exporter(EarningReportExporter::class),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

@@ -13,6 +13,7 @@ use Filament\Forms\Components\Section;
 use Filament\Support\Enums\FontWeight;
 use Filament\Forms\Components\Textarea;
 use Filament\Tables\Columns\TextColumn;
+use Illuminate\Database\Eloquent\Model;
 use App\Tables\Columns\CustomIconColumn;
 use Filament\Forms\Components\TextInput;
 use Filament\Tables\Columns\Layout\Stack;
@@ -21,12 +22,27 @@ use Filament\Forms\Components\ColorPicker;
 use Guava\FilamentIconPicker\Forms\IconPicker;
 use Filament\Tables\Columns\TextColumn\TextColumnSize;
 use App\Filament\Resources\EarningCategoryResource\Pages;
+use App\Filament\Resources\EarningsResource\Pages\CustomEarningCreate;
 
 class EarningCategoryResource extends Resource
 {
     protected static ?string $model = EarningCategory::class;
-    // protected static ?string $navigationIcon = 'tabler-wallet';
     protected static ?string $navigationGroup = 'Earnings';
+
+    public static function canView(Model $record): bool
+    {
+        return $record->user_id == Auth::id() || Auth::user()->role < 3;
+    }
+
+    public static function canEdit(Model $record): bool
+    {
+        return $record->user_id == Auth::id() || Auth::user()->role < 3;
+    }
+
+    public static function canDelete(Model $record): bool
+    {
+        return $record->user_id == Auth::id() || Auth::user()->role < 3;
+    }
 
     public static function form(Form $form): Form
     {
@@ -152,7 +168,9 @@ class EarningCategoryResource extends Resource
             ])
             ->bulkActions([
                 // 
-            ]);
+            ])->recordUrl(function ($record) {
+                return route('filament.admin.resources.earning-categories.create_custom', ['category' => $record->id]);
+            });
     }
 
     public static function getRelations(): array
@@ -168,6 +186,8 @@ class EarningCategoryResource extends Resource
             'index' => Pages\ListEarningCategories::route('/'),
             'create' => Pages\CreateEarningCategory::route('/create'),
             'edit' => Pages\EditEarningCategory::route('/{record}/edit'),
+
+            'create_custom' => CustomEarningCreate::route('{category}/create'),
         ];
     }
 }

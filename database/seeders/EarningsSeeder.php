@@ -23,14 +23,25 @@ class EarningsSeeder extends Seeder
         $faker = Faker::create('en_US');
 
         for ($i = 0; $i < count($users) * 12; $i++) {
-            $data[] = [
-                'name' => 'Expense ' . $i,
-                'user_id' => $users[$i%count($users)],
-                'category_id' => $categories[rand(1, count($categories))-1],
-                'sum' => rand(1, 100),
-                'description' => $faker->text(180),
-                'created_at' => Carbon::today()->subDays(rand(0, 60)),
-            ];
+            $userId = $users[$i%count($users)]; 
+            $categoryId = $categories[rand(1, count($categories))-1]; 
+            print_r($categoryId . " ");
+            print_r($userId . " "); 
+            print_r(count($users)." ");
+            if($categoryId%count($users) == 1 && $userId == 2 ||
+                $categoryId%count($users) == 2  && $userId == 1 ||
+                    $categoryId%count($users) == 0  && $userId == 3){
+                $data[] = [
+                    'name' => 'Expense ' . $i,
+                    'user_id' => $userId,
+                    'category_id' => $categoryId,
+                    'sum' => rand(1, 100),
+                    'description' => $faker->text(180),
+                    'created_at' => Carbon::today()->subDays(rand(0, 60)),
+                ];
+            }else{
+                $i--;
+            }
         }
     
         Earnings::insert($data);

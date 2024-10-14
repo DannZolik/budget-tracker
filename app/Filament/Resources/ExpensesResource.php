@@ -12,7 +12,7 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
-
+use Filament\Forms\Components\RichEditor;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
@@ -32,13 +32,20 @@ class ExpensesResource extends Resource
         return $form
             ->schema([
                 TextInput::make('name')->required(),
-                TextInput::make('description'),
+                
                 Select::make('category_id')
                     ->label('Category')
                     ->options(ExpenseCategory::where('user_id', auth()->id())->pluck('name', 'id'))
                     ->preload()
                     ->searchable(),
                 TextInput::make('sum')->required(),
+
+                RichEditor::make('description')->columnSpan([
+                    'default' => 10,
+                    'sm' => 10,
+                    'md' => 10,
+                    'lg' => 10,
+                ]),
                 Hidden::make('user_id')
                 ->default(function () {
                     return Auth::id();
@@ -51,9 +58,9 @@ class ExpensesResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('name')->sortable(),
-                TextColumn::make('expensesCategory.name')->sortable(),
+                TextColumn::make('expensesCategory.name')->label('Category')->sortable(),
                 TextColumn::make('sum')->sortable(),
-                TextColumn::make('created_at')->label('Date')->sortable(),
+                TextColumn::make('created_at')->date('d-m-Y')->label('Date')->sortable(),
                 TextColumn::make('description')->limit(50),
             ])
             ->filters([

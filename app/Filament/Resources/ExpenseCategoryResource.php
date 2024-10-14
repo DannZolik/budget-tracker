@@ -21,6 +21,7 @@ use Filament\Forms\Components\ColorPicker;
 use Guava\FilamentIconPicker\Forms\IconPicker;
 use Filament\Tables\Columns\TextColumn\TextColumnSize;
 use App\Filament\Resources\ExpenseCategoryResource\Pages;
+use App\Filament\Resources\ExpensesResource\Pages\CustomExpenseCreate;
 
 class ExpenseCategoryResource extends Resource
 {
@@ -152,7 +153,9 @@ class ExpenseCategoryResource extends Resource
             ])
             ->bulkActions([
                 //
-            ]);
+            ])->recordUrl(function ($record) {
+                return route('filament.admin.resources.expense-categories.create_custom', ['category' => $record->id]);
+            });
     }
 
     public static function getRelations(): array
@@ -168,6 +171,8 @@ class ExpenseCategoryResource extends Resource
             'index' => Pages\ListExpenseCategories::route('/'),
             'create' => Pages\CreateExpenseCategory::route('/create'),
             'edit' => Pages\EditExpenseCategory::route('/{record}/edit'),
+
+            'create_custom' => CustomExpenseCreate::route('/{category}/create'),
         ];
     }
 }

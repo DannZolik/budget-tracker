@@ -21,11 +21,11 @@ use Filament\Forms\Components\ColorPicker;
 use Guava\FilamentIconPicker\Forms\IconPicker;
 use Filament\Tables\Columns\TextColumn\TextColumnSize;
 use App\Filament\Resources\EarningCategoryResource\Pages;
+use App\Filament\Resources\EarningsResource\Pages\CustomEarningCreate;
 
 class EarningCategoryResource extends Resource
 {
     protected static ?string $model = EarningCategory::class;
-    // protected static ?string $navigationIcon = 'tabler-wallet';
     protected static ?string $navigationGroup = 'Earnings';
 
     public static function form(Form $form): Form
@@ -152,7 +152,9 @@ class EarningCategoryResource extends Resource
             ])
             ->bulkActions([
                 // 
-            ]);
+            ])->recordUrl(function ($record) {
+                return route('filament.admin.resources.earning-categories.create_custom', ['category' => $record->id]);
+            });
     }
 
     public static function getRelations(): array
@@ -168,6 +170,8 @@ class EarningCategoryResource extends Resource
             'index' => Pages\ListEarningCategories::route('/'),
             'create' => Pages\CreateEarningCategory::route('/create'),
             'edit' => Pages\EditEarningCategory::route('/{record}/edit'),
+
+            'create_custom' => CustomEarningCreate::route('{category}/create'),
         ];
     }
 }

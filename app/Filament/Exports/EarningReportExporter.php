@@ -6,8 +6,9 @@ use App\Models\EarningReport;
 use Filament\Actions\Exports\ExportColumn;
 use Filament\Actions\Exports\Exporter;
 use Filament\Actions\Exports\Models\Export;
+use Illuminate\Contracts\Queue\ShouldQueue;  // Add this import to handle batch jobs
 
-class EarningReportExporter extends Exporter
+class EarningReportExporter extends Exporter implements ShouldQueue  // Implement ShouldQueue
 {
     protected static ?string $model = EarningReport::class;
 

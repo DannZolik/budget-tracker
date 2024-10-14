@@ -3,35 +3,31 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\EarningsReportResource\Pages;
-use App\Filament\Resources\EarningsReportResource\RelationManagers;
 use App\Models\EarningReport;
 use App\Filament\Exports\EarningReportExporter;
-use Filament\Forms;
-use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Select;
-use Filament\Tables\Actions\ExportAction;  
+use Filament\Tables\Actions\ExportAction;
 
 class EarningsReportResource extends Resource
 {
     protected static ?string $model = EarningReport::class;
-    // protected static ?string $navigationIcon = 'heroicon-o-document-plus';
+
     protected static ?string $navigationGroup = 'Reports';
 
-    public static function form(Form $form): Form
+    /**
+     * Define the form schema if needed for your resource.
+     */
+    public static function form(\Filament\Forms\Form $form): \Filament\Forms\Form
     {
-        return $form
-            ->schema([
-                //
-            ]);
+        return $form->schema([]);
     }
 
+    /**
+     * Define the table schema for the resource.
+     */
     public static function table(Table $table): Table
     {
         return $table
@@ -47,29 +43,29 @@ class EarningsReportResource extends Resource
                     ->sortable(),
                 TextColumn::make('sum')
                     ->label('Total Earnings')
-                    ->sortable()
+                    ->sortable(),
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
-                ExportAction::make()
-                    ->exporter(EarningReportExporter::class),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
+            ])
+            ->headerActions([
+                ExportAction::make('export')
+                    ->label('Export All Earning Reports')
+                    ->exporter(EarningReportExporter::class)
             ]);
     }
 
-    public static function getRelations(): array
-    {
-        return [
-        ];
-    }
-
+    /**
+     * Define the resource pages.
+     */
     public static function getPages(): array
     {
         return [

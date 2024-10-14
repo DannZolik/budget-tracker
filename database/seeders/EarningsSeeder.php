@@ -18,23 +18,18 @@ class EarningsSeeder extends Seeder
     public function run(): void
     {
         $users = User::pluck('id')->toArray();
-        $categories = EarningCategory::pluck('id')->toArray();
+        $categories = EarningCategory::select('id','user_id')->get()->toArray();
         $data = [];
         $faker = Faker::create('en_US');
 
         for ($i = 0; $i < count($users) * 12; $i++) {
-            $userId = $users[$i%count($users)]; 
-            $categoryId = $categories[rand(1, count($categories))-1]; 
-            print_r($categoryId . " ");
-            print_r($userId . " "); 
-            print_r(count($users)." ");
-            if($categoryId%count($users) == 1 && $userId == 2 ||
-                $categoryId%count($users) == 2  && $userId == 1 ||
-                    $categoryId%count($users) == 0  && $userId == 3){
+            $userId = $users[$i%count($users)]; // Random user
+            $categoryId = $categories[rand(1, count($categories))-1]; // Picks random created category created by user
+            if($categoryId["user_id"] == $userId){ // If randomly selected category creator is same as random user 
                 $data[] = [
                     'name' => 'Expense ' . $i,
                     'user_id' => $userId,
-                    'category_id' => $categoryId,
+                    'category_id' => $categoryId["id"],
                     'sum' => rand(1, 100),
                     'description' => $faker->text(180),
                     'created_at' => Carbon::today()->subDays(rand(0, 60)),

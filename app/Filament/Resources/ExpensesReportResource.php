@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\ExpensesReportResource\Pages;
 use App\Models\ExpensesReport;
+use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -11,6 +12,7 @@ use Filament\Tables\Table;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Actions\ExportAction;
 use App\Filament\Exports\ExpenseReportExporter;
+use Illuminate\Database\Eloquent\Builder;
 
 
 class ExpensesReportResource extends Resource
@@ -48,7 +50,7 @@ class ExpensesReportResource extends Resource
                 //
                 Tables\Filters\Filter::make('from_date')
                     ->form([
-                        Forms\Components\DateTimePicker::make('date_from')
+                        DateTimePicker::make('date_from')
                             ->native(false)
                     ])
                     ->query(
@@ -62,7 +64,7 @@ class ExpensesReportResource extends Resource
                     ),
                 Tables\Filters\Filter::make('to_date')
                     ->form([
-                        Forms\Components\DateTimePicker::make('date_to')
+                        DateTimePicker::make('date_to')
                             ->native(false)
                     ])
                     ->query(

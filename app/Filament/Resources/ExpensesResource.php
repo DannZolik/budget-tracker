@@ -16,12 +16,8 @@ use App\Models\ExpenseCategory;
 use Filament\Resources\Resource;
 use Illuminate\Support\Facades\Auth;
 use Filament\Forms\Components\Hidden;
-use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Textarea;
-use Filament\Tables\Columns\TextColumn;
-use Filament\Forms\Components\TextInput;
-use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\ExpensesResource\Pages;
 
 class ExpensesResource extends Resource
@@ -85,7 +81,7 @@ class ExpensesResource extends Resource
                             ->preload()
                             ->searchable(),
                         RichEditor::make('description')
-                            ->rows(4)
+//                            ->rows(4)
                             ->columnSpan([
                                 'default' => 12,
                                 'sm' => 12,

@@ -6,6 +6,11 @@ use Filament\Tables;
 use App\Models\Earnings;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
+use Filament\Tables\Columns\TextColumn;
+use Illuminate\Database\Eloquent\Builder;
+use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Select;
 use App\Models\EarningCategory;
 use Filament\Resources\Resource;
 use Illuminate\Support\Facades\Auth;
@@ -77,7 +82,7 @@ class EarningsResource extends Resource
                             ->options(EarningCategory::where('user_id', Auth::id())->pluck('name', 'id'))
                             ->preload()
                             ->searchable(),
-                        Textarea::make('description')
+                        RichEditor::make('description')
                             ->rows(4)
                             ->columnSpan([
                                 'default' => 12,

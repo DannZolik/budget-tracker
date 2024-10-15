@@ -6,6 +6,12 @@ use Filament\Tables;
 use App\Models\Expenses;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
+use Filament\Forms\Components\RichEditor;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Select;
 use App\Models\ExpenseCategory;
 use Filament\Resources\Resource;
 use Illuminate\Support\Facades\Auth;
@@ -78,7 +84,7 @@ class ExpensesResource extends Resource
                             ->options(ExpenseCategory::where('user_id', Auth::id())->pluck('name', 'id'))
                             ->preload()
                             ->searchable(),
-                        Textarea::make('description')
+                        RichEditor::make('description')
                             ->rows(4)
                             ->columnSpan([
                                 'default' => 12,

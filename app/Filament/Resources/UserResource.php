@@ -3,24 +3,20 @@
 namespace App\Filament\Resources;
 
 use App\Models\User;
-use Filament\Forms;
 use Filament\Tables;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\FileUpload;
-use Filament\Tables\Columns\TextColumn;
-use Filament\Infolists\Components\TextEntry;
-use Illuminate\Support\HtmlString;
-use Filament\Tables\Columns\TextInputColumn;
+use Filament\Forms\Components\Select;
 use App\Filament\Resources\UserResource\Pages;
+use App\Tables\Columns\AvatarWithDetails;
 use Filament\Forms\Components\TextInput;
 
 class UserResource extends Resource
 {
     protected static ?string $model = User::class;
-    // protected static ?string $navigationIcon = 'tabler-users';
     protected static ?string $navigationGroup = 'System';
 
     public static function form(Form $form): Form
@@ -52,9 +48,9 @@ class UserResource extends Resource
                             ->required()
                             ->columnSpan([
                                 'default' => 12,
-                                'sm'      => 6,
-                                'md'      => 6,
-                                'lg'      => 6,
+                                'sm'      => 12,
+                                'md'      => 12,
+                                'lg'      => 12,
                             ]),
                         TextInput::make('email')
                             ->label('Email')
@@ -66,7 +62,8 @@ class UserResource extends Resource
                                 'md'      => 6,
                                 'lg'      => 6,
                             ]),
-                        TextInput::make('role')
+                        Select::make('role')
+                            ->relationship(name: 'role', titleAttribute: 'name')
                             ->label('Role')
                             ->required()
                             ->columnSpan([
@@ -76,7 +73,7 @@ class UserResource extends Resource
                                 'lg'      => 6,
                             ]),
                     ]),
-                    Section::make('Avatar')
+                Section::make('Avatar')
                     ->columnSpan([
                         'default' => 12,
                         'sm' => 4,
@@ -110,21 +107,39 @@ class UserResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('name'),
-                TextColumn::make('email'),
-                TextColumn::make('role')
-                    ->formatStateUsing(function ($state) {
+                AvatarWithDetails::make('name')
+                    ->label('Name')
+                    ->searchable()
+                    ->sortable()
+                    ->marginStart()
+                    ->avatar(function ($record) {
+                        return $record->avatar;
+                    })
+                    ->avatarType('image')
+                    ->title(function ($record) {
+                        return $record->name;
+                    })
+                    ->description(function ($record) {
+                        return $record->email;
+                    }),
+                AvatarWithDetails::make('role')
+                    ->label('Role')
+                    ->searchable()
+                    ->sortable()
+                    ->marginStart()
+                    ->avatarType('icon')
+                    ->icon('tabler-shield-check-filled')
+                    ->title(function ($record) {
+                        $state = $record->role;
+
                         if ($state == 1) {
-                            return "superadmin";
+                            return "Super admin";
+                        } elseif ($state == 2) {
+                            return "Admin";
+                        } elseif ($state == 3) {
+                            return "Regular user";
                         }
-                        elseif ($state == 2) {
-                            return "admin";
-                        }
-                        elseif ($state == 3) {
-                            return "user";
-                        }
-                    } ),
-                TextColumn::make('avatar')
+                    })
             ])
             ->filters([
                 //

@@ -13,6 +13,7 @@ use Filament\Forms\Components\Section;
 use Filament\Support\Enums\FontWeight;
 use Filament\Forms\Components\Textarea;
 use Filament\Tables\Columns\TextColumn;
+use Illuminate\Database\Eloquent\Model;
 use App\Tables\Columns\CustomIconColumn;
 use Filament\Forms\Components\TextInput;
 use Filament\Tables\Columns\Layout\Stack;
@@ -21,12 +22,28 @@ use Filament\Forms\Components\ColorPicker;
 use Guava\FilamentIconPicker\Forms\IconPicker;
 use Filament\Tables\Columns\TextColumn\TextColumnSize;
 use App\Filament\Resources\ExpenseCategoryResource\Pages;
+use App\Filament\Resources\ExpensesResource\Pages\CustomExpenseCreate;
 
 class ExpenseCategoryResource extends Resource
 {
     protected static ?string $model = ExpenseCategory::class;
     protected static ?string $navigationIcon = 'tabler-shopping-bag';
     protected static ?string $navigationGroup = 'Expenses';
+
+    public static function canView(Model $record): bool
+    {
+        return $record->user_id == Auth::id() || Auth::user()->role < 3;
+    }
+
+    public static function canEdit(Model $record): bool
+    {
+        return $record->user_id == Auth::id() || Auth::user()->role < 3;
+    }
+
+    public static function canDelete(Model $record): bool
+    {
+        return $record->user_id == Auth::id() || Auth::user()->role < 3;
+    }
 
     public static function form(Form $form): Form
     {
@@ -152,7 +169,9 @@ class ExpenseCategoryResource extends Resource
             ])
             ->bulkActions([
                 //
-            ]);
+            ])->recordUrl(function ($record) {
+                return route('filament.admin.resources.expense-categories.create_custom', ['category' => $record->id]);
+            });
     }
 
     public static function getRelations(): array
@@ -168,6 +187,8 @@ class ExpenseCategoryResource extends Resource
             'index' => Pages\ListExpenseCategories::route('/'),
             'create' => Pages\CreateExpenseCategory::route('/create'),
             'edit' => Pages\EditExpenseCategory::route('/{record}/edit'),
+
+            'create_custom' => CustomExpenseCreate::route('/{category}/create'),
         ];
     }
 }

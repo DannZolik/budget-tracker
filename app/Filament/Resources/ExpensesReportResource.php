@@ -46,6 +46,34 @@ class ExpensesReportResource extends Resource
             ])
             ->filters([
                 //
+                Tables\Filters\Filter::make('from_date')
+                    ->form([
+                        Forms\Components\DateTimePicker::make('date_from')
+                            ->native(false)
+                    ])
+                    ->query(
+                        function (Builder $query, array $data): Builder {
+                            if (empty($data['date_from'])) {
+                                return $query;
+                            }
+
+                            return $query->where('from_date', '>=', $data['date_from']);
+                        }
+                    ),
+                Tables\Filters\Filter::make('to_date')
+                    ->form([
+                        Forms\Components\DateTimePicker::make('date_to')
+                            ->native(false)
+                    ])
+                    ->query(
+                        function (Builder $query, array $data): Builder {
+                            if (empty($data['date_to'])) {
+                                return $query;
+                            }
+
+                            return $query->where('to_date', '<=', $data['date_to']);
+                        }
+                    )
             ])
             ->actions([
             ])

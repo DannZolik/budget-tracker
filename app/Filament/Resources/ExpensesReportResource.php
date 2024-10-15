@@ -3,16 +3,14 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ExpensesReportResource\Pages;
-use App\Filament\Resources\ExpensesReportResource\RelationManagers;
 use App\Models\ExpensesReport;
-use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Actions\ExportAction;
+use App\Filament\Exports\ExpenseReportExporter;
 
 
 class ExpensesReportResource extends Resource
@@ -33,11 +31,18 @@ class ExpensesReportResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('user.name'),
-                TextColumn::make('from_date'),
-                TextColumn::make('to_date'),
-                TextColumn::make('sum'),
-
+                TextColumn::make('user.name')
+                    ->label('User name')
+                    ->sortable(),
+                TextColumn::make('from_date')
+                    ->label('From Date')
+                    ->sortable(),
+                TextColumn::make('to_date')
+                    ->label('To Date')
+                    ->sortable(),
+                TextColumn::make('sum')
+                    ->label('Total Expenses')
+                    ->sortable(),
             ])
             ->filters([
                 //
@@ -48,6 +53,11 @@ class ExpensesReportResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
+            ])
+            ->headerActions([
+                ExportAction::make('export')
+                    ->label('Export All Expense Reports')
+                    ->exporter(ExpenseReportExporter::class)
             ]);
     }
 

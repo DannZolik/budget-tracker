@@ -111,7 +111,8 @@ class EarningsResource extends Resource
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('created_at')
-                ->icon('tabler-calendar')
+                    ->icon('tabler-calendar')
+                    ->date('d-m-Y')
                     ->label('Date')
                     ->searchable()
                     ->sortable(),

@@ -114,6 +114,7 @@ class ExpensesResource extends Resource
                     ->sortable(),
                 TextColumn::make('created_at')
                     ->icon('tabler-calendar')
+                    ->date('d-m-Y')
                     ->label('Date')
                     ->searchable()
                     ->sortable(),

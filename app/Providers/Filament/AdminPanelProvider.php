@@ -69,6 +69,7 @@ class AdminPanelProvider extends PanelProvider
                 DispatchServingFilamentEvent::class,
             ])
             ->sidebarCollapsibleOnDesktop()
+            ->databaseNotifications()
             ->globalSearch()
             ->viteTheme('resources/css/filament/app/theme.css')
             ->authMiddleware([

@@ -5,9 +5,11 @@ namespace App\Providers\Filament;
 use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
+use Filament\Facades\Filament;
 use Filament\Navigation\MenuItem;
 use Filament\Support\Colors\Color;
 use Illuminate\Support\Facades\Auth;
+use Filament\Navigation\NavigationGroup;
 use Filament\Http\Middleware\Authenticate;
 use App\Filament\Widgets\CreateEarningWidget;
 use App\Filament\Widgets\CreateExpenseWidget;
@@ -75,5 +77,25 @@ class AdminPanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
             ]);
+    }
+
+    public function boot(): void
+    {
+        Filament::serving(function () {
+            Filament::registerNavigationGroups([
+                'Expenses' => NavigationGroup::make()
+                    ->label(__('main.expenses'))
+                    ->icon('tabler-shopping-bag'),
+                'Earnings' => NavigationGroup::make()
+                    ->label(__('main.earnings'))
+                    ->icon('tabler-wallet'),
+                'Reports' => NavigationGroup::make()
+                    ->label(__('main.reports'))
+                    ->icon('tabler-report-analytics'),
+                'System' => NavigationGroup::make()
+                    ->label(__('main.settings'))
+                    ->icon('tabler-settings'),
+            ]);
+        });
     }
 }

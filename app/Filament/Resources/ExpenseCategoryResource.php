@@ -30,6 +30,16 @@ class ExpenseCategoryResource extends Resource
     protected static ?string $navigationIcon = 'tabler-shopping-bag';
     protected static ?string $navigationGroup = 'Expenses';
 
+    public static function getLabel(): ?string
+    {
+        return __('expenseCategory.label');
+    }
+
+    public static function getPluralLabel(): ?string
+    {
+        return __('expenseCategory.label_plural');
+    }
+
     public static function canView(Model $record): bool
     {
         return $record->user_id == Auth::id() || Auth::user()->role < 3;
@@ -55,7 +65,7 @@ class ExpenseCategoryResource extends Resource
                 'lg' => 12,
             ])
             ->schema([
-                Section::make(__('Earning category general information'))
+                Section::make(__('expenseCategory.earning_category_general_information'))
                     ->columnSpan([
                         'default' => 12,
                         'sm' => 12,
@@ -70,7 +80,7 @@ class ExpenseCategoryResource extends Resource
                     ])
                     ->schema([
                         TextInput::make('name')
-                            ->label('Title')
+                            ->label(__('expenseCategory.fields.title'))
                             ->required()
                             ->columnSpan([
                                 'default' => 12,
@@ -83,7 +93,7 @@ class ExpenseCategoryResource extends Resource
                                 return Auth::id();
                             }),
                         ColorPicker::make('icon_color')
-                            ->label('Icon color')
+                            ->label(__('expenseCategory.fields.icon_color'))
                             ->columnSpan([
                                 'default' => 12,
                                 'sm' => 6,
@@ -91,7 +101,7 @@ class ExpenseCategoryResource extends Resource
                                 'lg' => 6,
                             ]),
                         ColorPicker::make('bg_color')
-                            ->label('Background color')
+                            ->label(__('expenseCategory.fields.background_color'))
                             ->columnSpan([
                                 'default' => 12,
                                 'sm' => 6,
@@ -100,7 +110,7 @@ class ExpenseCategoryResource extends Resource
                             ]),
                         IconPicker::make('icon')
                             ->sets(['tabler'])
-                            ->label('Icon')
+                            ->label(__('expenseCategory.fields.icon'))
                             ->required()
                             ->preload()
                             ->columns(3)
@@ -111,7 +121,7 @@ class ExpenseCategoryResource extends Resource
                                 'lg' => 6,
                             ]),
                         Textarea::make('description')
-                            ->label('Description')
+                            ->label(__('expenseCategory.fields.description'))
                             ->nullable()
                             ->rows(3)
                             ->columnSpan([
@@ -140,12 +150,12 @@ class ExpenseCategoryResource extends Resource
                             return $record->icon_color;
                         }),
                     TextColumn::make('name')
-                        ->label('Name')
+                        ->label(__('expenseCategory.fields.title'))
                         ->searchable()
                         ->sortable()
                         ->weight(FontWeight::Bold)
                         ->size(TextColumnSize::Large),
-                    TextColumn::make('description')
+                    TextColumn::make(__('expenseCategory.fields.description'))
                         ->words(15)
                         ->searchable()
                         ->sortable()

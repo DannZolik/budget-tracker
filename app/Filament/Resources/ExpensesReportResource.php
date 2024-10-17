@@ -3,16 +3,16 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ExpensesReportResource\Pages;
-use App\Filament\Resources\ExpensesReportResource\RelationManagers;
 use App\Models\ExpensesReport;
-use Filament\Forms;
+use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Actions\ExportAction;
+use App\Filament\Exports\ExpenseReportExporter;
+use Illuminate\Database\Eloquent\Builder;
 
 
 class ExpensesReportResource extends Resource
@@ -33,14 +33,49 @@ class ExpensesReportResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('user.name'),
-                TextColumn::make('from_date'),
-                TextColumn::make('to_date'),
-                TextColumn::make('sum'),
-
+                TextColumn::make('user.name')
+                    ->label('User name')
+                    ->sortable(),
+                TextColumn::make('from_date')
+                    ->label('From Date')
+                    ->sortable(),
+                TextColumn::make('to_date')
+                    ->label('To Date')
+                    ->sortable(),
+                TextColumn::make('sum')
+                    ->label('Total Expenses')
+                    ->sortable(),
             ])
             ->filters([
                 //
+                Tables\Filters\Filter::make('from_date')
+                    ->form([
+                        DateTimePicker::make('date_from')
+                            ->native(false)
+                    ])
+                    ->query(
+                        function (Builder $query, array $data): Builder {
+                            if (empty($data['date_from'])) {
+                                return $query;
+                            }
+
+                            return $query->where('from_date', '>=', $data['date_from']);
+                        }
+                    ),
+                Tables\Filters\Filter::make('to_date')
+                    ->form([
+                        DateTimePicker::make('date_to')
+                            ->native(false)
+                    ])
+                    ->query(
+                        function (Builder $query, array $data): Builder {
+                            if (empty($data['date_to'])) {
+                                return $query;
+                            }
+
+                            return $query->where('to_date', '<=', $data['date_to']);
+                        }
+                    )
             ])
             ->actions([
             ])
@@ -48,6 +83,11 @@ class ExpensesReportResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
+            ])
+            ->headerActions([
+                ExportAction::make('export')
+                    ->label('Export All Expense Reports')
+                    ->exporter(ExpenseReportExporter::class)
             ]);
     }
 

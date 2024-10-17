@@ -26,20 +26,5 @@ class AppServiceProvider extends ServiceProvider
             $switch
                 ->locales(['en', 'lv', 'ru']);
         });
-
-        Filament::registerNavigationGroups([
-            'Expenses' => NavigationGroup::make()
-                ->label('Expenses')
-                ->icon('tabler-shopping-bag'),
-            'Earnings' => NavigationGroup::make()
-                ->label('Earnings')
-                ->icon('tabler-wallet'),
-            'Reports' => NavigationGroup::make()
-                ->label('Reports')
-                ->icon('tabler-report-analytics'),
-            'System' => NavigationGroup::make()
-                ->label('System')
-                ->icon('tabler-settings'),
-        ]);
     }
 }

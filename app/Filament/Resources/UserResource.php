@@ -7,17 +7,33 @@ use Filament\Tables;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
-use Filament\Forms\Components\Section;
-use Filament\Forms\Components\FileUpload;
+use Illuminate\Support\Facades\Auth;
 use Filament\Forms\Components\Select;
-use App\Filament\Resources\UserResource\Pages;
-use App\Tables\Columns\AvatarWithDetails;
+use Filament\Forms\Components\Section;
+use Illuminate\Database\Eloquent\Model;
 use Filament\Forms\Components\TextInput;
+use App\Tables\Columns\AvatarWithDetails;
+use Filament\Forms\Components\FileUpload;
+use App\Filament\Resources\UserResource\Pages;
 
 class UserResource extends Resource
 {
     protected static ?string $model = User::class;
     protected static ?string $navigationGroup = 'System';
+    public static function canView(Model $record): bool
+    {
+        return $record->user_id == Auth::id() || Auth::user()->role < 3;
+    }
+
+    public static function canEdit(Model $record): bool
+    {
+        return $record->user_id == Auth::id() || Auth::user()->role < 3;
+    }
+
+    public static function canDelete(Model $record): bool
+    {
+        return $record->user_id == Auth::id() || Auth::user()->role < 3;
+    }
 
     public static function form(Form $form): Form
     {
@@ -171,4 +187,5 @@ class UserResource extends Resource
             'editProfile'  => Pages\CustomEditProfile::route('/{record}/edit-profile'),
         ];
     }
+
 }

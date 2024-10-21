@@ -23,7 +23,7 @@ class UserResource extends Resource
 
     public static function canView(Model $record): bool
     {
-        return Auth::user()->role < 3;
+        return $record->id == Auth::id() || Auth::user()->role < 3;
     }
 
     public static function canCreate(): bool
@@ -33,7 +33,7 @@ class UserResource extends Resource
 
     public static function canEdit(Model $record): bool
     {
-        return Auth::user()->role < 3;
+        return $record->id == Auth::id() || Auth::user()->role < 3;
     }
 
     public static function canDelete(Model $record): bool

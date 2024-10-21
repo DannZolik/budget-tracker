@@ -92,7 +92,7 @@ class ExpenseCategoryResource extends Resource
                             ->default(function () {
                                 return Auth::id();
                             }),
-                        ColorPicker::make('icon_color')
+                        ColorPicker::make('icon_color')->required()
                             ->label(__('expenseCategory.fields.icon_color'))
                             ->columnSpan([
                                 'default' => 12,
@@ -100,7 +100,7 @@ class ExpenseCategoryResource extends Resource
                                 'md' => 6,
                                 'lg' => 6,
                             ]),
-                        ColorPicker::make('bg_color')
+                        ColorPicker::make('bg_color')->required()
                             ->label(__('expenseCategory.fields.background_color'))
                             ->columnSpan([
                                 'default' => 12,
@@ -108,7 +108,7 @@ class ExpenseCategoryResource extends Resource
                                 'md' => 6,
                                 'lg' => 6,
                             ]),
-                        IconPicker::make('icon')
+                        IconPicker::make('icon')->required()
 //                            ->sets(['tabler'])
                             ->label(__('expenseCategory.fields.icon'))
                             ->required()

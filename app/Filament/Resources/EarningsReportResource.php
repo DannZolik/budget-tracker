@@ -49,7 +49,7 @@ class EarningsReportResource extends Resource
     {
         return $table
             ->modifyQueryUsing(function (Builder $query) {
-                if (Auth::id()==3){
+                if (Auth::user()->role==3){
                     return $query->where('user_id', Auth::id());
                 }
                 return $query;
@@ -58,7 +58,7 @@ class EarningsReportResource extends Resource
                 TextColumn::make('user.name')
                     ->label('User Name')
                     ->visible(function() {
-                        return Auth::id()<3;
+                        return Auth::user()->role<3;
                         }
                     )
                     ->sortable(),

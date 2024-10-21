@@ -19,14 +19,22 @@ use Filament\Resources\Pages\Concerns\InteractsWithRecord;
 
 class CustomEditProfile extends EditRecord
 {
-
     use InteractsWithRecord;
 
     protected static string $resource = UserResource::class;
 
-    public function mount(int | string $record = 1): void
+    public function mount(int | string $record): void
     {
         $this->record = User::find($record);
+
+        if (is_null($this->record)) {
+            abort(404);
+        }
+
+        if ($this->record->id != Auth::id() && Auth::user()->role >= 3) {
+            abort(403);
+        }
+
         $this->fillForm();
     }
 

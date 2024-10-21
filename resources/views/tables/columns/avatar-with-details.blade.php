@@ -5,8 +5,8 @@
     @if ($getAvatarType() == 'image')
         @if (is_null($getAvatar()))
             <div
-                class="rounded-full overflow-hidden {{ $getBgSize() }} flex items-center justify-center group-hover:opacity-70 border border-gray-200">
-                @svg('tabler-user', 'text-gray-600 dark:text-gray-500 h-6 w-6')
+                class="rounded-full overflow-hidden {{ $getBgSize() }} flex items-center justify-center group-hover:opacity-70 border border-gray-200 dark:border-gray-700">
+                @svg('tabler-user', 'text-gray-600 dark:text-gray-400 h-6 w-6')
             </div>
         @else
             <div
@@ -21,14 +21,14 @@
         </div>
     @elseif ($getAvatarType() == 'icon')
         <div style="background-color: {{ $getBgColor() ? $getBgColor() : '#377DFF' }};"
-            class="rounded-full overflow-hidden {{ $getBgSize() }} flex items-center justify-center group-hover:opacity-70 border border-gray-200">
+            class="rounded-full overflow-hidden {{ $getBgSize() }} flex items-center justify-center group-hover:opacity-70 border border-gray-200 dark:border-gray-700">
             @svg($getIcon(), 'text-white h-6 w-6')
         </div>
     @endif
     <div class="flex flex-col justify-center mb-1">
-        <p class="text-sm text-gray-900 group-hover:text-gray-500">
+        <p class="text-sm text-gray-900 dark:text-gray-100 group-hover:text-gray-500 dark:group-hover:text-gray-400">
             {{ $getTitle() }}</p>
-        <p class="text-xs text-gray-600 group-hover:text-gray-400 ">
+        <p class="text-xs text-gray-600 dark:text-gray-400 group-hover:text-gray-400 dark:group-hover:text-gray-500">
             {{ $getDescription() }}</p>
     </div>
 </div>

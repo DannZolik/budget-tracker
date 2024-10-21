@@ -38,19 +38,19 @@ class ExpensesResource extends Resource
     }
 
     public static function canView(Model $record): bool
-{
-    return $record->user_id == Auth::id() || Auth::user()->role < 3;
-}
+    {
+        return $record->user_id == Auth::id() || Auth::user()->role < 3;
+    }
 
-public static function canEdit(Model $record): bool
-{
-    return $record->user_id == Auth::id() || Auth::user()->role < 3;
-}
+    public static function canEdit(Model $record): bool
+    {
+        return $record->user_id == Auth::id() || Auth::user()->role < 3;
+    }
 
-public static function canDelete(Model $record): bool
-{
-    return $record->user_id == Auth::id() || Auth::user()->role < 3;
-}
+    public static function canDelete(Model $record): bool
+    {
+        return $record->user_id == Auth::id() || Auth::user()->role < 3;
+    }
 
     public static function form(Form $form): Form
     {
@@ -114,7 +114,7 @@ public static function canDelete(Model $record): bool
                         RichEditor::make('description')
                             ->label(__('expense.fields.description'))
                             ->placeholder(__('expense.placeholders.description'))
-//                            ->rows(4)
+                            //                            ->rows(4)
                             ->columnSpan([
                                 'default' => 12,
                                 'sm' => 12,

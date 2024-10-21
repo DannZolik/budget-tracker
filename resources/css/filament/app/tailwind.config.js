@@ -17,5 +17,6 @@ export default {
         "./resources/views/filament/resources/**/pages/*.blade.php",
         "./vendor/vendemy/learning/resources/views/**/*.blade.php",
         "./vendor/vendemy/learning/resources/views/**/**/*.blade.php",
+        "./resources/views/errors/*.blade.php",
     ],
 };

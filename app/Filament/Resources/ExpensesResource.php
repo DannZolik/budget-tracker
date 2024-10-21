@@ -19,12 +19,38 @@ use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Textarea;
 use App\Filament\Resources\ExpensesResource\Pages;
+use Illuminate\Database\Eloquent\Model;
 
 class ExpensesResource extends Resource
 {
     protected static ?string $model = Expenses::class;
     protected static ?string $navigationIcon = 'tabler-brand-shopee';
     protected static ?string $navigationGroup = 'Expenses';
+
+    public static function getLabel(): ?string
+    {
+        return __('expense.label');
+    }
+
+    public static function getPluralLabel(): ?string
+    {
+        return __('expense.label_plural');
+    }
+
+    public static function canView(Model $record): bool
+{
+    return $record->user_id == Auth::id() || Auth::user()->role < 3;
+}
+
+public static function canEdit(Model $record): bool
+{
+    return $record->user_id == Auth::id() || Auth::user()->role < 3;
+}
+
+public static function canDelete(Model $record): bool
+{
+    return $record->user_id == Auth::id() || Auth::user()->role < 3;
+}
 
     public static function form(Form $form): Form
     {
@@ -36,7 +62,7 @@ class ExpensesResource extends Resource
                 'lg' => 12,
             ])
             ->schema([
-                Section::make(__('Earning general information'))
+                Section::make(__('expense.expense_general_information'))
                     ->columnSpan([
                         'default' => 12,
                         'sm' => 12,
@@ -51,6 +77,8 @@ class ExpensesResource extends Resource
                     ])
                     ->schema([
                         TextInput::make('name')
+                            ->label(__('expense.fields.name'))
+                            ->placeholder(__('expense.placeholders.name'))
                             ->columnSpan([
                                 'default' => 12,
                                 'sm' => 4,
@@ -59,6 +87,8 @@ class ExpensesResource extends Resource
                             ])
                             ->required(),
                         TextInput::make('sum')
+                            ->label(__('expense.fields.sum'))
+                            ->placeholder(__('expense.placeholders.sum'))
                             ->prefixIcon('tabler-pig-money')
                             ->columnSpan([
                                 'default' => 12,
@@ -69,7 +99,8 @@ class ExpensesResource extends Resource
                             ->required(),
                         Select::make('category_id')
                             ->required()
-                            ->label('Category')
+                            ->label(__('expense.fields.category'))
+                            ->placeholder(__('expense.placeholders.category'))
                             ->prefixIcon('tabler-report-money')
                             ->columnSpan([
                                 'default' => 12,
@@ -81,6 +112,8 @@ class ExpensesResource extends Resource
                             ->preload()
                             ->searchable(),
                         RichEditor::make('description')
+                            ->label(__('expense.fields.description'))
+                            ->placeholder(__('expense.placeholders.description'))
 //                            ->rows(4)
                             ->columnSpan([
                                 'default' => 12,
@@ -101,25 +134,25 @@ class ExpensesResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('name')
-                    ->label('Title')
+                    ->label(__('expense.fields.name'))
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('expensesCategory.name')
-                    ->label('Category')
+                    ->label(__('expense.fields.category'))
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('sum')
-                    ->label('Expense')
+                    ->label(__('expense.fields.sum'))
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('created_at')
                     ->icon('tabler-calendar')
                     ->date('d-m-Y')
-                    ->label('Date')
+                    ->label(__('expense.fields.date'))
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('description')
-                    ->label('Description')
+                    ->label(__('expense.fields.description'))
                     ->sortable()
                     ->searchable()
                     ->limit(50),

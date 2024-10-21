@@ -18,12 +18,39 @@ use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Textarea;
 use App\Filament\Resources\EarningsResource\Pages;
 use Filament\Forms\Components\Section;
+use Illuminate\Database\Eloquent\Model;
 
 class EarningsResource extends Resource
 {
     protected static ?string $model = Earnings::class;
     protected static ?string $navigationGroup = 'Earnings';
 
+    public static function getLabel(): ?string
+    {
+        return __('earning.label');
+    }
+
+    public static function getPluralLabel(): ?string
+    {
+        return __('earning.label_plural');
+    }
+
+
+    public static function canView(Model $record): bool
+    {
+        return $record->user_id == Auth::id() || Auth::user()->role < 3;
+    }
+    
+    public static function canEdit(Model $record): bool
+    {
+        return $record->user_id == Auth::id() || Auth::user()->role < 3;
+    }
+    
+    public static function canDelete(Model $record): bool
+    {
+        return $record->user_id == Auth::id() || Auth::user()->role < 3;
+    }
+    
     public static function form(Form $form): Form
     {
         return $form
@@ -34,7 +61,7 @@ class EarningsResource extends Resource
                 'lg' => 12,
             ])
             ->schema([
-                Section::make(__('Earning general information'))
+                Section::make(__('earning.earning_general_information'))
                     ->columnSpan([
                         'default' => 12,
                         'sm' => 12,
@@ -49,6 +76,8 @@ class EarningsResource extends Resource
                     ])
                     ->schema([
                         TextInput::make('name')
+                            ->label(__('earning.fields.name'))
+                            ->placeholder(__('earning.placeholders.name'))
                             ->columnSpan([
                                 'default' => 12,
                                 'sm' => 4,
@@ -57,6 +86,8 @@ class EarningsResource extends Resource
                             ])
                             ->required(),
                         TextInput::make('sum')
+                            ->label(__('earning.fields.sum'))
+                            ->placeholder(__('earning.placeholders.sum'))
                             ->prefixIcon('tabler-pig-money')
                             ->columnSpan([
                                 'default' => 12,
@@ -67,7 +98,8 @@ class EarningsResource extends Resource
                             ->required(),
                         Select::make('category_id')
                             ->required()
-                            ->label('Category')
+                            ->label(__('earning.fields.category'))
+                            ->placeholder(__('earning.placeholders.category'))
                             ->prefixIcon('tabler-report-money')
                             ->columnSpan([
                                 'default' => 12,
@@ -79,7 +111,8 @@ class EarningsResource extends Resource
                             ->preload()
                             ->searchable(),
                         RichEditor::make('description')
-//                            ->rows(4)
+                            ->label(__('earning.fields.description'))
+                            ->placeholder(__('earning.placeholders.description'))
                             ->columnSpan([
                                 'default' => 12,
                                 'sm' => 12,
@@ -99,25 +132,25 @@ class EarningsResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('name')
-                    ->label('Title')
+                    ->label(__('earning.fields.name'))
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('earningsCategory.name')
-                    ->label('Category')
+                    ->label(__('earning.fields.category'))
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('sum')
-                    ->label('Earning')
+                    ->label(__('earning.fields.sum'))
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('created_at')
                     ->icon('tabler-calendar')
                     ->date('d-m-Y')
-                    ->label('Date')
+                    ->label(__('earning.fields.date'))
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('description')
-                    ->label('Description')
+                    ->label(__('earning.fields.description'))
                     ->sortable()
                     ->searchable()
                     ->limit(50),

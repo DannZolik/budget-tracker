@@ -109,9 +109,10 @@ class ExpenseCategoryResource extends Resource
                                 'lg' => 6,
                             ]),
                         IconPicker::make('icon')
-                            ->sets(['tabler'])
+//                            ->sets(['tabler'])
                             ->label(__('expenseCategory.fields.icon'))
                             ->required()
+                            ->allowedIcons(["tabler-coin-bitcoin-filled","tabler-car","tabler-credit-card-filled","tabler-shopping-cart-filled","tabler-gift","tabler-devices-pc","tabler-baguette","tabler-receipt-tax","tabler-hospital","tabler-brand-mcdonalds","tabler-beer-filled","tabler-device-tv"])
                             ->preload()
                             ->columns(3)
                             ->columnSpan([

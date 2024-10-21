@@ -91,7 +91,7 @@ class UserResource extends Resource
                                 'lg'      => 6,
                             ]),
                         Select::make('role')
-                            ->relationship(name: 'role', titleAttribute: 'name')
+                            ->relationship(name: 'rolee', titleAttribute: 'name')
                             ->label('Role')
                             ->required()
                             ->columnSpan([

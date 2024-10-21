@@ -12,12 +12,27 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Actions\ExportAction;
 use Filament\Forms\Components\DateTimePicker;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Model;
 
 class EarningsReportResource extends Resource
 {
     protected static ?string $model = EarningReport::class;
 
     protected static ?string $navigationGroup = 'Reports';
+
+    public static function canView(Model $record): bool
+    {
+        return $record->user_id == Auth::id() || Auth::user()->role < 3;
+    }
+    public static function canEdit(Model $record): bool
+    {
+        return $record->user_id == Auth::id() || Auth::user()->role < 3;
+    }
+    public static function canDelete(Model $record): bool
+    {
+        return $record->user_id == Auth::id() || Auth::user()->role < 3;
+    }
 
     /**
      * Define the form schema if needed for your resource.
@@ -33,15 +48,29 @@ class EarningsReportResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->modifyQueryUsing(function (Builder $query) {
+                if (Auth::id()==3){
+                    return $query->where('user_id', Auth::id());
+                }
+                return $query;
+            })
             ->columns([
                 TextColumn::make('user.name')
                     ->label('User Name')
+                    ->visible(function() {
+                        return Auth::id()<3;
+                        }
+                    )
                     ->sortable(),
                 TextColumn::make('from_date')
                     ->label('From Date')
+                    ->icon('tabler-calendar')
+                    ->date('d-m-Y')
                     ->sortable(),
                 TextColumn::make('to_date')
                     ->label('To Date')
+                    ->icon('tabler-calendar')
+                    ->date('d-m-Y')
                     ->sortable(),
                 TextColumn::make('sum')
                     ->label('Total Earnings')

@@ -13,6 +13,7 @@ use Filament\Forms\Components\Section;
 use Filament\Support\Enums\FontWeight;
 use Filament\Forms\Components\Textarea;
 use Filament\Tables\Columns\TextColumn;
+use Illuminate\Database\Eloquent\Model;
 use App\Tables\Columns\CustomIconColumn;
 use Filament\Forms\Components\TextInput;
 use Filament\Tables\Columns\Layout\Stack;
@@ -21,12 +22,38 @@ use Filament\Forms\Components\ColorPicker;
 use Guava\FilamentIconPicker\Forms\IconPicker;
 use Filament\Tables\Columns\TextColumn\TextColumnSize;
 use App\Filament\Resources\ExpenseCategoryResource\Pages;
+use App\Filament\Resources\ExpensesResource\Pages\CustomExpenseCreate;
 
 class ExpenseCategoryResource extends Resource
 {
     protected static ?string $model = ExpenseCategory::class;
     protected static ?string $navigationIcon = 'tabler-shopping-bag';
     protected static ?string $navigationGroup = 'Expenses';
+
+    public static function getLabel(): ?string
+    {
+        return __('expenseCategory.label');
+    }
+
+    public static function getPluralLabel(): ?string
+    {
+        return __('expenseCategory.label_plural');
+    }
+
+    public static function canView(Model $record): bool
+    {
+        return $record->user_id == Auth::id() || Auth::user()->role < 3;
+    }
+
+    public static function canEdit(Model $record): bool
+    {
+        return $record->user_id == Auth::id() || Auth::user()->role < 3;
+    }
+
+    public static function canDelete(Model $record): bool
+    {
+        return $record->user_id == Auth::id() || Auth::user()->role < 3;
+    }
 
     public static function form(Form $form): Form
     {
@@ -38,7 +65,7 @@ class ExpenseCategoryResource extends Resource
                 'lg' => 12,
             ])
             ->schema([
-                Section::make(__('Earning category general information'))
+                Section::make(__('expenseCategory.earning_category_general_information'))
                     ->columnSpan([
                         'default' => 12,
                         'sm' => 12,
@@ -53,7 +80,7 @@ class ExpenseCategoryResource extends Resource
                     ])
                     ->schema([
                         TextInput::make('name')
-                            ->label('Title')
+                            ->label(__('expenseCategory.fields.title'))
                             ->required()
                             ->columnSpan([
                                 'default' => 12,
@@ -66,7 +93,7 @@ class ExpenseCategoryResource extends Resource
                                 return Auth::id();
                             }),
                         ColorPicker::make('icon_color')
-                            ->label('Icon color')
+                            ->label(__('expenseCategory.fields.icon_color'))
                             ->columnSpan([
                                 'default' => 12,
                                 'sm' => 6,
@@ -74,7 +101,7 @@ class ExpenseCategoryResource extends Resource
                                 'lg' => 6,
                             ]),
                         ColorPicker::make('bg_color')
-                            ->label('Background color')
+                            ->label(__('expenseCategory.fields.background_color'))
                             ->columnSpan([
                                 'default' => 12,
                                 'sm' => 6,
@@ -83,7 +110,7 @@ class ExpenseCategoryResource extends Resource
                             ]),
                         IconPicker::make('icon')
                             ->sets(['tabler'])
-                            ->label('Icon')
+                            ->label(__('expenseCategory.fields.icon'))
                             ->required()
                             ->preload()
                             ->columns(3)
@@ -94,7 +121,7 @@ class ExpenseCategoryResource extends Resource
                                 'lg' => 6,
                             ]),
                         Textarea::make('description')
-                            ->label('Description')
+                            ->label(__('expenseCategory.fields.description'))
                             ->nullable()
                             ->rows(3)
                             ->columnSpan([
@@ -123,12 +150,12 @@ class ExpenseCategoryResource extends Resource
                             return $record->icon_color;
                         }),
                     TextColumn::make('name')
-                        ->label('Name')
+                        ->label(__('expenseCategory.fields.title'))
                         ->searchable()
                         ->sortable()
                         ->weight(FontWeight::Bold)
                         ->size(TextColumnSize::Large),
-                    TextColumn::make('description')
+                    TextColumn::make(__('expenseCategory.fields.description'))
                         ->words(15)
                         ->searchable()
                         ->sortable()
@@ -152,7 +179,9 @@ class ExpenseCategoryResource extends Resource
             ])
             ->bulkActions([
                 //
-            ]);
+            ])->recordUrl(function ($record) {
+                return route('filament.admin.resources.expense-categories.create_custom', ['category' => $record->id]);
+            });
     }
 
     public static function getRelations(): array
@@ -168,6 +197,8 @@ class ExpenseCategoryResource extends Resource
             'index' => Pages\ListExpenseCategories::route('/'),
             'create' => Pages\CreateExpenseCategory::route('/create'),
             'edit' => Pages\EditExpenseCategory::route('/{record}/edit'),
+
+            'create_custom' => CustomExpenseCreate::route('/{category}/create'),
         ];
     }
 }

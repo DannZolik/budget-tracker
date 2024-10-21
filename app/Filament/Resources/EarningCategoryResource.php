@@ -13,6 +13,7 @@ use Filament\Forms\Components\Section;
 use Filament\Support\Enums\FontWeight;
 use Filament\Forms\Components\Textarea;
 use Filament\Tables\Columns\TextColumn;
+use Illuminate\Database\Eloquent\Model;
 use App\Tables\Columns\CustomIconColumn;
 use Filament\Forms\Components\TextInput;
 use Filament\Tables\Columns\Layout\Stack;
@@ -21,12 +22,37 @@ use Filament\Forms\Components\ColorPicker;
 use Guava\FilamentIconPicker\Forms\IconPicker;
 use Filament\Tables\Columns\TextColumn\TextColumnSize;
 use App\Filament\Resources\EarningCategoryResource\Pages;
+use App\Filament\Resources\EarningsResource\Pages\CustomEarningCreate;
 
 class EarningCategoryResource extends Resource
 {
     protected static ?string $model = EarningCategory::class;
-    // protected static ?string $navigationIcon = 'tabler-wallet';
     protected static ?string $navigationGroup = 'Earnings';
+
+    public static function getLabel(): ?string
+    {
+        return __('earningCategory.label');
+    }
+
+    public static function getPluralLabel(): ?string
+    {
+        return __('earningCategory.label_plural');
+    }
+
+    public static function canView(Model $record): bool
+    {
+        return $record->user_id == Auth::id() || Auth::user()->role < 3;
+    }
+
+    public static function canEdit(Model $record): bool
+    {
+        return $record->user_id == Auth::id() || Auth::user()->role < 3;
+    }
+
+    public static function canDelete(Model $record): bool
+    {
+        return $record->user_id == Auth::id() || Auth::user()->role < 3;
+    }
 
     public static function form(Form $form): Form
     {
@@ -38,7 +64,7 @@ class EarningCategoryResource extends Resource
                 'lg' => 12,
             ])
             ->schema([
-                Section::make(__('Earning category general information'))
+                Section::make(__('earningCategory.earning_category_general_information'))
                     ->columnSpan([
                         'default' => 12,
                         'sm' => 12,
@@ -53,7 +79,7 @@ class EarningCategoryResource extends Resource
                     ])
                     ->schema([
                         TextInput::make('name')
-                            ->label('Title')
+                            ->label(__('earningCategory.fields.title'))
                             ->required()
                             ->columnSpan([
                                 'default' => 12,
@@ -66,7 +92,7 @@ class EarningCategoryResource extends Resource
                                 return Auth::id();
                             }),
                         ColorPicker::make('icon_color')
-                            ->label('Icon color')
+                            ->label(__('earningCategory.fields.icon_color'))
                             ->columnSpan([
                                 'default' => 12,
                                 'sm' => 6,
@@ -74,7 +100,7 @@ class EarningCategoryResource extends Resource
                                 'lg' => 6,
                             ]),
                         ColorPicker::make('bg_color')
-                            ->label('Background color')
+                            ->label(__('earningCategory.fields.background_color'))
                             ->columnSpan([
                                 'default' => 12,
                                 'sm' => 6,
@@ -83,7 +109,7 @@ class EarningCategoryResource extends Resource
                             ]),
                         IconPicker::make('icon')
                             ->sets(['tabler'])
-                            ->label('Icon')
+                            ->label(__('earningCategory.fields.icon'))
                             ->required()
                             ->preload()
                             ->columns(3)
@@ -94,7 +120,7 @@ class EarningCategoryResource extends Resource
                                 'lg' => 6,
                             ]),
                         Textarea::make('description')
-                            ->label('Description')
+                            ->label(__('earningCategory.fields.description'))
                             ->nullable()
                             ->rows(3)
                             ->columnSpan([
@@ -123,12 +149,12 @@ class EarningCategoryResource extends Resource
                             return $record->icon_color;
                         }),
                     TextColumn::make('name')
-                        ->label('Name')
+                        ->label(__('earningCategory.fields.title'))
                         ->searchable()
                         ->sortable()
                         ->weight(FontWeight::Bold)
                         ->size(TextColumnSize::Large),
-                    TextColumn::make('description')
+                    TextColumn::make(__('earningCategory.fields.description'))
                         ->words(15)
                         ->searchable()
                         ->sortable()
@@ -152,7 +178,9 @@ class EarningCategoryResource extends Resource
             ])
             ->bulkActions([
                 // 
-            ]);
+            ])->recordUrl(function ($record) {
+                return route('filament.admin.resources.earning-categories.create_custom', ['category' => $record->id]);
+            });
     }
 
     public static function getRelations(): array
@@ -168,6 +196,8 @@ class EarningCategoryResource extends Resource
             'index' => Pages\ListEarningCategories::route('/'),
             'create' => Pages\CreateEarningCategory::route('/create'),
             'edit' => Pages\EditEarningCategory::route('/{record}/edit'),
+
+            'create_custom' => CustomEarningCreate::route('{category}/create'),
         ];
     }
 }

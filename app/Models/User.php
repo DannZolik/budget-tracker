@@ -58,7 +58,7 @@ class User extends Authenticatable implements HasAvatar
 
     public function role()
     {
-        return $this->belongsTo(Role::class);
+        return $this->belongsTo(Role::class, 'role');
     }
 
     /**

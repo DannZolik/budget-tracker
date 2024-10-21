@@ -18,19 +18,26 @@ class ExpensesSeeder extends Seeder
     public function run(): void
     {
         $users = User::pluck('id')->toArray();
-        $categories = ExpenseCategory::pluck('id')->toArray();
+        $categories = ExpenseCategory::select('id','user_id')->get()->toArray();
         $faker = Faker::create('en_US');
         $data = [];
-        
         for ($i = 0; $i < count($users) * 12; $i++) {
-            $data[] = [
-                'name' => 'Expense ' . $i,
-                'user_id' => $users[$i%count($users)],
-                'category_id' => $categories[rand(1, count($categories))-1],
-                'sum' => rand(1, 100),
-                'description' => $faker->text(180),
-                'created_at' => Carbon::today()->subDays(rand(0, 60)),
-            ];
+            $userId = $users[$i%count($users)]; 
+            $categoryId = $categories[rand(1, count($categories))-1]; 
+            if($categoryId["user_id"] == $userId){
+                $data[] = [
+                    'name' => 'Expense ' . $i,
+                    'user_id' => $userId,
+                    'category_id' => $categoryId["id"],
+                    'sum' => rand(1, 100),
+                    'description' => $faker->text(180),
+                    'created_at' => Carbon::today()->subDays(rand(0, 60)),
+                ];
+            }else{
+                $i--;
+            }
+
+
         }
         
         Expenses::insert($data);

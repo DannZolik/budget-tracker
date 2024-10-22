@@ -20,6 +20,16 @@ class EarningsReportResource extends Resource
     protected static ?string $model = EarningReport::class;
 
     protected static ?string $navigationGroup = 'Reports';
+    public static function getLabel(): ?string
+    {
+        return __('earningReport.label');
+    }
+
+    public static function getPluralLabel(): ?string
+    {
+        return __('earningReport.label_plural');
+    }
+
 
     public static function canView(Model $record): bool
     {
@@ -56,24 +66,24 @@ class EarningsReportResource extends Resource
             })
             ->columns([
                 TextColumn::make('user.name')
-                    ->label('User Name')
+                    ->label(__('earningReport.fields.user'))
                     ->visible(function() {
                         return Auth::id()<3;
                         }
                     )
                     ->sortable(),
                 TextColumn::make('from_date')
-                    ->label('From Date')
+                    ->label(__('earningReport.fields.from_date'))
                     ->icon('tabler-calendar')
                     ->date('d-m-Y')
                     ->sortable(),
                 TextColumn::make('to_date')
-                    ->label('To Date')
+                    ->label(__('earningReport.fields.to_date'))
                     ->icon('tabler-calendar')
                     ->date('d-m-Y')
                     ->sortable(),
                 TextColumn::make('sum')
-                    ->label('Total Earnings')
+                    ->label(__('earningReport.fields.sum'))
                     ->sortable(),
             ])
             ->filters([
@@ -81,7 +91,8 @@ class EarningsReportResource extends Resource
                 Tables\Filters\Filter::make('from_date')
                     ->form([
                         DateTimePicker::make('date_from')
-                            ->native(false)
+                        ->label(__('earningReport.fields.from_date'))
+                        ->native(false)
                     ])
                     ->query(
                         function (Builder $query, array $data): Builder {
@@ -95,7 +106,8 @@ class EarningsReportResource extends Resource
                 Tables\Filters\Filter::make('to_date')
                     ->form([
                         DateTimePicker::make('date_to')
-                            ->native(false)
+                        ->label(__('earningReport.fields.to_date'))
+                        ->native(false)
                     ])
                     ->query(
                         function (Builder $query, array $data): Builder {
@@ -117,7 +129,7 @@ class EarningsReportResource extends Resource
             ])
             ->headerActions([
                 ExportAction::make('export')
-                    ->label('Export All Earning Reports')
+                ->label(__('earningReport.export'))
                     ->exporter(EarningReportExporter::class)
             ]);
     }

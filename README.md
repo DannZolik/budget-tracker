@@ -13,6 +13,10 @@
 6. npm i
 
 7. npm run build
+--- TO RUN THE PROGRAM
+8. php artisan serve
+
+9. php artisan queue:work
 
 
 bus labi!

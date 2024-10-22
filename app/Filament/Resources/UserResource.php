@@ -28,7 +28,7 @@ class UserResource extends Resource
 
     public static function canCreate(): bool
     {
-        return Auth::user()->role < 3;
+        return false;
     }
 
     public static function canEdit(Model $record): bool

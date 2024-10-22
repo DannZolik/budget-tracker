@@ -59,7 +59,7 @@ class ExpensesReportResource extends Resource
     {
         return $table
             ->modifyQueryUsing(function (Builder $query) {
-                if (Auth::id()==3){
+                if (Auth::user()->role==3){
                     return $query->where('user_id', Auth::id());
                 }
                 return $query;
@@ -68,7 +68,7 @@ class ExpensesReportResource extends Resource
                 TextColumn::make('user.name')
                     ->label(__('expenseReport.fields.user'))
                     ->visible(function() {
-                        return Auth::id()<3;
+                        return Auth::user()->role<3;
                         }
                     )
                     ->sortable(),

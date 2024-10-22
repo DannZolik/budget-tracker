@@ -40,17 +40,17 @@ class EarningsResource extends Resource
     {
         return $record->user_id == Auth::id() || Auth::user()->role < 3;
     }
-    
+
     public static function canEdit(Model $record): bool
     {
         return $record->user_id == Auth::id() || Auth::user()->role < 3;
     }
-    
+
     public static function canDelete(Model $record): bool
     {
         return $record->user_id == Auth::id() || Auth::user()->role < 3;
     }
-    
+
     public static function form(Form $form): Form
     {
         return $form

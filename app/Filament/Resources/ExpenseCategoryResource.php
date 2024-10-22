@@ -92,7 +92,7 @@ class ExpenseCategoryResource extends Resource
                             ->default(function () {
                                 return Auth::id();
                             }),
-                        ColorPicker::make('icon_color')
+                        ColorPicker::make('icon_color')->required()
                             ->label(__('expenseCategory.fields.icon_color'))
                             ->columnSpan([
                                 'default' => 12,
@@ -100,7 +100,7 @@ class ExpenseCategoryResource extends Resource
                                 'md' => 6,
                                 'lg' => 6,
                             ]),
-                        ColorPicker::make('bg_color')
+                        ColorPicker::make('bg_color')->required()
                             ->label(__('expenseCategory.fields.background_color'))
                             ->columnSpan([
                                 'default' => 12,
@@ -108,10 +108,11 @@ class ExpenseCategoryResource extends Resource
                                 'md' => 6,
                                 'lg' => 6,
                             ]),
-                        IconPicker::make('icon')
-                            ->sets(['tabler'])
+                        IconPicker::make('icon')->required()
+//                            ->sets(['tabler'])
                             ->label(__('expenseCategory.fields.icon'))
                             ->required()
+                            ->allowedIcons(["tabler-coin-bitcoin-filled","tabler-car","tabler-credit-card-filled","tabler-shopping-cart-filled","tabler-gift","tabler-devices-pc","tabler-baguette","tabler-receipt-tax","tabler-hospital","tabler-brand-mcdonalds","tabler-beer-filled","tabler-device-tv"])
                             ->preload()
                             ->columns(3)
                             ->columnSpan([

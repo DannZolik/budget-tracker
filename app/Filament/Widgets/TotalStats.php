@@ -25,19 +25,19 @@ class TotalStats extends BaseWidget
 
         return [
             Stat::make('Total earned', $totalEarnings)
-                ->description('The amount of money you have earned')
+                ->description(__('dashboard.earned'))
                 ->chart([1, 1, 1])
                 ->descriptionIcon('tabler-wallet', IconPosition::Before)
                 ->color('success'),
             Stat::make('Total spent', $totalSpending)
-                ->description('The amount of money you have spent')
+                ->description(__('dashboard.spent'))
                 ->descriptionIcon('tabler-shopping-bag', IconPosition::Before)
                 ->chart([1, 1, 1])
                 ->color('danger'),
             Stat::make('Difference', $difference)
                 ->chart([1, 1, 1])
                 ->color($color)
-                ->description('The difference between your earnings and spending')
+                ->description(__('dashboard.difference'))
                 ->descriptionIcon('heroicon-m-arrow-trending-up', IconPosition::Before),
         ];
     }

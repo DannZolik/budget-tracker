@@ -91,7 +91,7 @@ class EarningCategoryResource extends Resource
                             ->default(function () {
                                 return Auth::id();
                             }),
-                        ColorPicker::make('icon_color')
+                        ColorPicker::make('icon_color')->required()
                             ->label(__('earningCategory.fields.icon_color'))
                             ->columnSpan([
                                 'default' => 12,
@@ -99,7 +99,7 @@ class EarningCategoryResource extends Resource
                                 'md' => 6,
                                 'lg' => 6,
                             ]),
-                        ColorPicker::make('bg_color')
+                        ColorPicker::make('bg_color')->required()
                             ->label(__('earningCategory.fields.background_color'))
                             ->columnSpan([
                                 'default' => 12,
@@ -107,9 +107,10 @@ class EarningCategoryResource extends Resource
                                 'md' => 6,
                                 'lg' => 6,
                             ]),
-                        IconPicker::make('icon')
-                            ->sets(['tabler'])
+                        IconPicker::make('icon')->required()
+//                            ->sets(['tabler'])
                             ->label(__('earningCategory.fields.icon'))
+                            ->allowedIcons(["tabler-coin-bitcoin-filled","tabler-car","tabler-receipt","tabler-devices-pc","tabler-receipt-tax","tabler-gift","tabler-cash","tabler-beer-filled","tabler-coins","tabler-mail","tabler-dice-5"])
                             ->required()
                             ->preload()
                             ->columns(3)
@@ -177,7 +178,7 @@ class EarningCategoryResource extends Resource
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
-                // 
+                //
             ])->recordUrl(function ($record) {
                 return route('filament.admin.resources.earning-categories.create_custom', ['category' => $record->id]);
             });

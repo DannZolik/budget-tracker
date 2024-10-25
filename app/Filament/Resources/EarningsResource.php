@@ -144,7 +144,7 @@ class EarningsResource extends Resource
                     ->sortable(),
                 TextColumn::make('sum')
                     ->label(__('earning.fields.sum'))
-                    ->searchable()
+//                    ->searchable()
                     ->sortable(),
                 TextColumn::make('created_at')
                     ->icon('tabler-calendar')
@@ -157,10 +157,9 @@ class EarningsResource extends Resource
                     ->sortable()
                     ->searchable()
                     ->limit(50),
-            ])
+            ])->defaultSort('created_at', 'DESC')
             ->modifyQueryUsing(function (Builder $query) {
-                return $query->where('user_id', Auth::id())
-                    ->orderBy('created_at', 'desc');
+                return $query->where('user_id', Auth::id());
             })
             ->filters([
                 //

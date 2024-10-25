@@ -10,6 +10,7 @@ use Filament\Resources\Resource;
 use Illuminate\Support\Facades\Auth;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Section;
+use Filament\Tables\Actions\EditAction;
 use Illuminate\Database\Eloquent\Model;
 use Filament\Forms\Components\TextInput;
 use App\Tables\Columns\AvatarWithDetails;
@@ -20,6 +21,16 @@ class UserResource extends Resource
 {
     protected static ?string $model = User::class;
     protected static ?string $navigationGroup = 'System';
+
+    public static function getLabel(): ?string
+    {
+        return __('user.label');
+    }
+
+    public static function getPluralLabel(): ?string
+    {
+        return __('user.label_plural');
+    }
 
     public static function canView(Model $record): bool
     {
@@ -136,7 +147,7 @@ class UserResource extends Resource
         return $table
             ->columns([
                 AvatarWithDetails::make('name')
-                    ->label('Name')
+                    ->label(__('user.columns.name'))
                     ->searchable()
                     ->sortable()
                     ->marginStart()
@@ -151,21 +162,32 @@ class UserResource extends Resource
                         return $record->email;
                     }),
                 AvatarWithDetails::make('role')
-                    ->label('Role')
+                    ->label(__('user.columns.role'))
                     ->searchable()
                     ->sortable()
                     ->marginStart()
+                    ->bgColor(function ($record) {
+                        $state = $record->role;
+
+                        if ($state == 1) {
+                            return '#10B981';
+                        } elseif ($state == 2) {
+                            return '#F59E0B';
+                        } elseif ($state == 3) {
+                            return '#3B82F6';
+                        }
+                    })
                     ->avatarType('icon')
                     ->icon('tabler-shield-check-filled')
                     ->title(function ($record) {
                         $state = $record->role;
 
                         if ($state == 1) {
-                            return "Super admin";
+                            return __('user.admin.super_admin');
                         } elseif ($state == 2) {
-                            return "Admin";
+                            return __('user.admin.admin');;
                         } elseif ($state == 3) {
-                            return "Regular user";
+                            return __('user.admin.user');;
                         }
                     })
             ])
@@ -173,13 +195,18 @@ class UserResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                EditAction::make()
+                    ->url(fn(Model $record): string => route('filament.admin.resources.users.editProfile', [
+                        'record' => $record->id,
+                    ]))
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])->recordUrl(function ($record) {
+                return route('filament.admin.resources.users.editProfile', ['record' => $record->id]);
+            });
     }
 
 

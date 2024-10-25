@@ -87,6 +87,8 @@ class ExpensesResource extends Resource
                             ])
                             ->required(),
                         TextInput::make('sum')
+                            ->numeric()
+                            ->minValue(0)
                             ->label(__('expense.fields.sum'))
                             ->placeholder(__('expense.placeholders.sum'))
                             ->prefixIcon('tabler-pig-money')
@@ -111,10 +113,10 @@ class ExpensesResource extends Resource
                             ->options(ExpenseCategory::where('user_id', Auth::id())->pluck('name', 'id'))
                             ->preload()
                             ->searchable(),
-                        RichEditor::make('description')
+                        Textarea::make('description')
                             ->label(__('expense.fields.description'))
                             ->placeholder(__('expense.placeholders.description'))
-                            //                            ->rows(4)
+                            ->rows(4)
                             ->columnSpan([
                                 'default' => 12,
                                 'sm' => 12,

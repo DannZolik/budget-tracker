@@ -87,6 +87,8 @@ class EarningsResource extends Resource
                             ->required(),
                         TextInput::make('sum')
                             ->label(__('earning.fields.sum'))
+                            ->numeric()
+                            ->minValue(0)
                             ->placeholder(__('earning.placeholders.sum'))
                             ->prefixIcon('tabler-pig-money')
                             ->columnSpan([
@@ -110,9 +112,10 @@ class EarningsResource extends Resource
                             ->options(EarningCategory::where('user_id', Auth::id())->pluck('name', 'id'))
                             ->preload()
                             ->searchable(),
-                        RichEditor::make('description')
+                        Textarea::make('description')
                             ->label(__('earning.fields.description'))
                             ->placeholder(__('earning.placeholders.description'))
+                            ->rows(4)
                             ->columnSpan([
                                 'default' => 12,
                                 'sm' => 12,

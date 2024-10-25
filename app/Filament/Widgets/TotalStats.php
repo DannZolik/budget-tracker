@@ -24,17 +24,17 @@ class TotalStats extends BaseWidget
         }
 
         return [
-            Stat::make('Total earned', $totalEarnings)
+            Stat::make(__('dashboard.total_earned'), $totalEarnings)
                 ->description(__('dashboard.earned'))
                 ->chart([1, 1, 1])
                 ->descriptionIcon('tabler-wallet', IconPosition::Before)
                 ->color('success'),
-            Stat::make('Total spent', $totalSpending)
+            Stat::make(__('dashboard.total_spent'), $totalSpending)
                 ->description(__('dashboard.spent'))
                 ->descriptionIcon('tabler-shopping-bag', IconPosition::Before)
                 ->chart([1, 1, 1])
                 ->color('danger'),
-            Stat::make('Difference', $difference)
+            Stat::make(__('dashboard.total_difference'), $difference)
                 ->chart([1, 1, 1])
                 ->color($color)
                 ->description(__('dashboard.difference'))

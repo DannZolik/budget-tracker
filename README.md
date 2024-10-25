@@ -14,6 +14,12 @@
 
 7. npm run build
 
+STEPS TO RUN THE PROGRAM
+
+9. php artisan serve
+
+10. php artisan queue:work
+
 
 bus labi!
 

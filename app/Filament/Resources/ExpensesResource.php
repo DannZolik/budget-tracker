@@ -157,9 +157,9 @@ class ExpensesResource extends Resource
                     ->searchable()
                     ->limit(50),
             ])
+            ->defaultSort('created_at', 'DESC')
             ->modifyQueryUsing(function (Builder $query) {
-                return $query->where('user_id', Auth::id())
-                    ->orderBy('created_at', 'desc');
+                return $query->where('user_id', Auth::id());
             })
             ->filters([
                 //

@@ -108,9 +108,8 @@ class EarningCategoryResource extends Resource
                                 'lg' => 6,
                             ]),
                         IconPicker::make('icon')->required()
-//                            ->sets(['tabler'])
                             ->label(__('earningCategory.fields.icon'))
-                            ->allowedIcons(["tabler-coin-bitcoin-filled","tabler-car","tabler-receipt","tabler-devices-pc","tabler-receipt-tax","tabler-gift","tabler-cash","tabler-beer-filled","tabler-coins","tabler-mail","tabler-dice-5"])
+                            ->allowedIcons(["tabler-coin-bitcoin-filled", "tabler-car", "tabler-receipt", "tabler-devices-pc", "tabler-receipt-tax", "tabler-gift", "tabler-cash", "tabler-beer-filled", "tabler-coins", "tabler-mail", "tabler-dice-5"])
                             ->required()
                             ->preload()
                             ->columns(3)
@@ -155,7 +154,8 @@ class EarningCategoryResource extends Resource
                         ->sortable()
                         ->weight(FontWeight::Bold)
                         ->size(TextColumnSize::Large),
-                    TextColumn::make(__('earningCategory.fields.description'))
+                    TextColumn::make('description')
+                        ->label(__('earningCategory.fields.description'))
                         ->words(15)
                         ->searchable()
                         ->sortable()

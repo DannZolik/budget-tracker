@@ -136,6 +136,12 @@ class AvatarWithDetails extends Column
 
     public function getAvatar(): ?string
     {
+        $avatar = $this->evaluate($this->avatar);
+
+        if (!is_null($avatar)) {
+            return 'storage/'.$avatar;
+        }
+
         return $this->evaluate($this->avatar);
     }
 

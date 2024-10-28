@@ -19,14 +19,22 @@ use Filament\Resources\Pages\Concerns\InteractsWithRecord;
 
 class CustomEditProfile extends EditRecord
 {
-
     use InteractsWithRecord;
 
     protected static string $resource = UserResource::class;
 
-    public function mount(int | string $record = 1): void
+    public function mount(int | string $record): void
     {
         $this->record = User::find($record);
+
+        if (is_null($this->record)) {
+            abort(404);
+        }
+
+        if ($this->record->id != Auth::id() && Auth::user()->role >= 3) {
+            abort(403);
+        }
+
         $this->fillForm();
     }
 
@@ -40,12 +48,12 @@ class CustomEditProfile extends EditRecord
                 'lg' => 12,
             ])
             ->schema([
-                Section::make('Edit profile')
+                Section::make(__('user.fields.edit_profile'))
                     ->columnSpan([
                         'default' => 12,
-                        'sm' => 8,
-                        'md' => 8,
-                        'lg' => 8,
+                        'sm' => 7,
+                        'md' => 7,
+                        'lg' => 7,
                     ])
                     ->columns([
                         'default' => 12,
@@ -55,7 +63,7 @@ class CustomEditProfile extends EditRecord
                     ])
                     ->schema([
                         TextInput::make('name')
-                            ->label('Name')
+                            ->label(__('user.columns.name'))
                             ->required()
                             ->columnSpan([
                                 'default' => 12,
@@ -64,8 +72,10 @@ class CustomEditProfile extends EditRecord
                                 'lg' => 12,
                             ]),
                         TextInput::make('email')
-                            ->label('Email')
+                            ->label(__('user.fields.email'))
                             ->required()
+                            ->email()
+                            ->unique(ignoreRecord: true)
                             ->columnSpan([
                                 'default' => 12,
                                 'sm' => 12,
@@ -73,7 +83,9 @@ class CustomEditProfile extends EditRecord
                                 'lg' => 12,
                             ]),
                         TextInput::make('phone')
-                            ->label('Phone')
+                            ->label(__('user.fields.phone'))
+                            ->numeric()
+                            ->minValue(100000)
                             ->unique(ignoreRecord: true)
                             ->columnSpan([
                                 'default' => 12,
@@ -82,7 +94,7 @@ class CustomEditProfile extends EditRecord
                                 'lg' => 12,
                             ]),
                         Textarea::make('goals')
-                            ->label('Goals')
+                            ->label(__('user.fields.goals'))
                             ->rows(4)
                             ->columnSpan([
                                 'default' => 12,
@@ -92,7 +104,7 @@ class CustomEditProfile extends EditRecord
                             ]),
                     ]),
                 Group::make([
-                    Section::make('Avatar')
+                    Section::make(__('user.fields.avatar'))
                         ->columnSpan([
                             'default' => 12,
                             'sm' => 12,
@@ -118,7 +130,7 @@ class CustomEditProfile extends EditRecord
                                     'lg' => 12,
                                 ]),
                         ]),
-                    Section::make('Password change')
+                    Section::make(__('user.fields.password_change'))
                         ->columnSpan([
                             'default' => 12,
                             'sm' => 12,
@@ -133,7 +145,7 @@ class CustomEditProfile extends EditRecord
                         ])
                         ->schema([
                             TextInput::make('password_old')
-                                ->label('Old password')
+                                ->label(__('user.fields.old_password'))
                                 ->password()
                                 ->revealable()
                                 ->prefixIcon('tabler-lock')
@@ -143,12 +155,15 @@ class CustomEditProfile extends EditRecord
                                 ->hidden(fn(string $context, $record): bool => $context === 'create' || Auth::id() !== $record->id)
                                 ->afterStateUpdated(function ($record, $operation, $get, $state) {
                                     $passwordConfirmation = $get('password_confirmation');
+                                    $newPassword = $get('password');
                                     $oldPassword = $state;
 
                                     if (
                                         $operation != 'create'
                                         && $record->id == Auth::id()
                                         && $passwordConfirmation == $get('password')
+                                        && strlen($newPassword) >= 8
+                                        && strlen($passwordConfirmation) >= 8
                                         && $get('password') !== ''
                                         && $get('password') !== null
                                         && $get('password') != $oldPassword
@@ -165,7 +180,7 @@ class CustomEditProfile extends EditRecord
                                     'lg' => 12,
                                 ]),
                             TextInput::make('password')
-                                ->label('New password')
+                                ->label(__('user.fields.password'))
                                 ->password()
                                 ->revealable()
                                 ->prefixIcon('tabler-lock-plus')
@@ -181,6 +196,8 @@ class CustomEditProfile extends EditRecord
 
                                     if (
                                         $operation != 'create'
+                                        && strlen($state) >= 8
+                                        && strlen($passwordConfirmation) >= 8
                                         && $record->id == Auth::id()
                                         && $passwordConfirmation == $state
                                         && $state !== ''
@@ -202,7 +219,7 @@ class CustomEditProfile extends EditRecord
                                     'lg' => 12,
                                 ]),
                             TextInput::make('password_confirmation')
-                                ->label('Confirm new password')
+                                ->label(__('user.fields.password_confirmation'))
                                 ->password()
                                 ->required(function ($context): bool {
                                     return $context === 'create';
@@ -221,6 +238,8 @@ class CustomEditProfile extends EditRecord
                                         $operation != 'create'
                                         && $record->id == Auth::id()
                                         && $passwordConfirmation == $get('password')
+                                        && strlen($get('password')) >= 8
+                                        && strlen($passwordConfirmation) >= 8
                                         && $get('password') !== ''
                                         && $get('password') !== null
                                         && $get('password') != $oldPassword
@@ -236,12 +255,13 @@ class CustomEditProfile extends EditRecord
                                     'md' => 12,
                                     'lg' => 12,
                                 ]),
-                        ]),
+                        ])
+                        ->visible(fn($record) => $record->id == Auth::id()),
                 ])->columnSpan([
                     'default' => 12,
-                    'sm' => 4,
-                    'md' => 4,
-                    'lg' => 4,
+                    'sm' => 5,
+                    'md' => 5,
+                    'lg' => 5,
                 ])->columns([
                     'default' => 12,
                     'sm' => 12,

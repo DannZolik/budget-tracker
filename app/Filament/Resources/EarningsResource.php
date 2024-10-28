@@ -40,17 +40,17 @@ class EarningsResource extends Resource
     {
         return $record->user_id == Auth::id() || Auth::user()->role < 3;
     }
-    
+
     public static function canEdit(Model $record): bool
     {
         return $record->user_id == Auth::id() || Auth::user()->role < 3;
     }
-    
+
     public static function canDelete(Model $record): bool
     {
         return $record->user_id == Auth::id() || Auth::user()->role < 3;
     }
-    
+
     public static function form(Form $form): Form
     {
         return $form
@@ -87,6 +87,8 @@ class EarningsResource extends Resource
                             ->required(),
                         TextInput::make('sum')
                             ->label(__('earning.fields.sum'))
+                            ->numeric()
+                            ->minValue(0)
                             ->placeholder(__('earning.placeholders.sum'))
                             ->prefixIcon('tabler-pig-money')
                             ->columnSpan([
@@ -110,9 +112,10 @@ class EarningsResource extends Resource
                             ->options(EarningCategory::where('user_id', Auth::id())->pluck('name', 'id'))
                             ->preload()
                             ->searchable(),
-                        RichEditor::make('description')
+                        Textarea::make('description')
                             ->label(__('earning.fields.description'))
                             ->placeholder(__('earning.placeholders.description'))
+                            ->rows(4)
                             ->columnSpan([
                                 'default' => 12,
                                 'sm' => 12,
@@ -141,7 +144,7 @@ class EarningsResource extends Resource
                     ->sortable(),
                 TextColumn::make('sum')
                     ->label(__('earning.fields.sum'))
-                    ->searchable()
+//                    ->searchable()
                     ->sortable(),
                 TextColumn::make('created_at')
                     ->icon('tabler-calendar')
@@ -154,10 +157,9 @@ class EarningsResource extends Resource
                     ->sortable()
                     ->searchable()
                     ->limit(50),
-            ])
+            ])->defaultSort('created_at', 'DESC')
             ->modifyQueryUsing(function (Builder $query) {
-                return $query->where('user_id', Auth::id())
-                    ->orderBy('created_at', 'desc');
+                return $query->where('user_id', Auth::id());
             })
             ->filters([
                 //

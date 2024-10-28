@@ -2,11 +2,9 @@
 
 namespace App\Models;
 
- use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Filament\Models\Contracts\FilamentUser;
 use Filament\Models\Contracts\HasAvatar;
 
 
@@ -48,17 +46,17 @@ class User extends Authenticatable implements HasAvatar
 
     public function earnings()
     {
-        return $this->hasMany(Earning::class);
+        return $this->hasMany(Earnings::class);
     }
 
     public function expenses()
     {
-        return $this->hasMany(Expense::class);
+        return $this->hasMany(Expenses::class);
     }
 
-    public function role()
+    public function rolee()
     {
-        return $this->belongsTo(Role::class);
+        return $this->belongsTo(Role::class, 'role');
     }
 
     /**
@@ -82,5 +80,42 @@ class User extends Authenticatable implements HasAvatar
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    protected static function booted(): void
+    {
+        static::created(function ($user) {
+            // Automatically create earning categories for the new user
+            $earningCategories = ['Salary', 'Scholarship', 'Other'];
+            $earningIcons = ['heroicon-s-credit-card', 'heroicon-s-academic-cap', 'heroicon-s-banknotes'];
+            $earningIconsColor = ['#1a1716', '#1a1716', '#1a1716'];
+            $earningBgColor = ['#1be104', '#04dee1', '#cbcbcb'];
+
+            foreach ($earningCategories as $index => $category) {
+                EarningCategory::create([
+                    'name' => $category,
+                    'user_id' => $user->id,
+                    'icon' => $earningIcons[$index],
+                    'icon_color' => $earningIconsColor[$index],
+                    'bg_color' => $earningBgColor[$index],
+                ]);
+            }
+
+            // Automatically create expense categories for the new user
+            $expenseCategories = ['Food', 'Transport', 'Entertainment', 'Health', 'Education', 'Other'];
+            $expenseIcons = ['heroicon-s-shopping-cart', 'heroicon-s-truck', 'heroicon-s-ticket', 'heroicon-s-heart', 'heroicon-s-academic-cap', 'heroicon-s-banknotes'];
+            $expenseIconsColor = ['#1a1716', '#1a1716', '#1a1716', '#1a1716', '#1a1716', '#1a1716'];
+            $expenseBgColor = ['#1be104', '#04dee1', '#cbcbcb', '#1be104', '#04dee1', '#cbcbcb'];
+
+            foreach ($expenseCategories as $index => $category) {
+                ExpenseCategory::create([
+                    'name' => $category,
+                    'user_id' => $user->id,
+                    'icon' => $expenseIcons[$index],
+                    'icon_color' => $expenseIconsColor[$index],
+                    'bg_color' => $expenseBgColor[$index],
+                ]);
+            }
+        });
     }
 }

@@ -38,19 +38,19 @@ class ExpensesResource extends Resource
     }
 
     public static function canView(Model $record): bool
-{
-    return $record->user_id == Auth::id() || Auth::user()->role < 3;
-}
+    {
+        return $record->user_id == Auth::id() || Auth::user()->role < 3;
+    }
 
-public static function canEdit(Model $record): bool
-{
-    return $record->user_id == Auth::id() || Auth::user()->role < 3;
-}
+    public static function canEdit(Model $record): bool
+    {
+        return $record->user_id == Auth::id() || Auth::user()->role < 3;
+    }
 
-public static function canDelete(Model $record): bool
-{
-    return $record->user_id == Auth::id() || Auth::user()->role < 3;
-}
+    public static function canDelete(Model $record): bool
+    {
+        return $record->user_id == Auth::id() || Auth::user()->role < 3;
+    }
 
     public static function form(Form $form): Form
     {
@@ -87,6 +87,8 @@ public static function canDelete(Model $record): bool
                             ])
                             ->required(),
                         TextInput::make('sum')
+                            ->numeric()
+                            ->minValue(0)
                             ->label(__('expense.fields.sum'))
                             ->placeholder(__('expense.placeholders.sum'))
                             ->prefixIcon('tabler-pig-money')
@@ -111,10 +113,10 @@ public static function canDelete(Model $record): bool
                             ->options(ExpenseCategory::where('user_id', Auth::id())->pluck('name', 'id'))
                             ->preload()
                             ->searchable(),
-                        RichEditor::make('description')
+                        Textarea::make('description')
                             ->label(__('expense.fields.description'))
                             ->placeholder(__('expense.placeholders.description'))
-//                            ->rows(4)
+                            ->rows(4)
                             ->columnSpan([
                                 'default' => 12,
                                 'sm' => 12,
@@ -157,9 +159,9 @@ public static function canDelete(Model $record): bool
                     ->searchable()
                     ->limit(50),
             ])
+            ->defaultSort('created_at', 'DESC')
             ->modifyQueryUsing(function (Builder $query) {
-                return $query->where('user_id', Auth::id())
-                    ->orderBy('created_at', 'desc');
+                return $query->where('user_id', Auth::id());
             })
             ->filters([
                 //

@@ -115,6 +115,7 @@ class EarningsResource extends Resource
                         Textarea::make('description')
                             ->label(__('earning.fields.description'))
                             ->placeholder(__('earning.placeholders.description'))
+                            ->maxLength(65535)
                             ->rows(4)
                             ->columnSpan([
                                 'default' => 12,

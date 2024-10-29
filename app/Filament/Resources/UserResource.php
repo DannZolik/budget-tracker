@@ -85,6 +85,7 @@ class UserResource extends Resource
                         TextInput::make('name')
                             ->label('Name')
                             ->required()
+                            ->maxLegth(255)
                             ->columnSpan([
                                 'default' => 12,
                                 'sm'      => 12,
@@ -94,6 +95,7 @@ class UserResource extends Resource
                         TextInput::make('email')
                             ->label('Email')
                             ->email()
+                            ->maxLegth(255)
                             ->required()
                             ->columnSpan([
                                 'default' => 12,

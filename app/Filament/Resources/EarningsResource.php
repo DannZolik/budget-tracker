@@ -78,6 +78,7 @@ class EarningsResource extends Resource
                         TextInput::make('name')
                             ->label(__('earning.fields.name'))
                             ->placeholder(__('earning.placeholders.name'))
+                            ->maxLength(255)
                             ->columnSpan([
                                 'default' => 12,
                                 'sm' => 4,

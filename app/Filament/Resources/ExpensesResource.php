@@ -116,7 +116,7 @@ class ExpensesResource extends Resource
                         Textarea::make('description')
                             ->label(__('expense.fields.description'))
                             ->placeholder(__('expense.placeholders.description'))
-                            ->maxLength(255)
+                            ->maxLength(65535)
                             ->rows(4)
                             ->columnSpan([
                                 'default' => 12,

@@ -80,6 +80,7 @@ class EarningCategoryResource extends Resource
                     ->schema([
                         TextInput::make('name')
                             ->label(__('earningCategory.fields.title'))
+                            ->maxLength(255)
                             ->required()
                             ->columnSpan([
                                 'default' => 12,
@@ -122,6 +123,7 @@ class EarningCategoryResource extends Resource
                         Textarea::make('description')
                             ->label(__('earningCategory.fields.description'))
                             ->nullable()
+                             ->maxLength(65535)
                             ->rows(3)
                             ->columnSpan([
                                 'default' => 12,

@@ -79,6 +79,7 @@ class ExpensesResource extends Resource
                         TextInput::make('name')
                             ->label(__('expense.fields.name'))
                             ->placeholder(__('expense.placeholders.name'))
+                            ->maxLength(255)
                             ->columnSpan([
                                 'default' => 12,
                                 'sm' => 4,

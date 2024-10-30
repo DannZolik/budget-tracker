@@ -64,6 +64,7 @@ class CustomEditProfile extends EditRecord
                     ->schema([
                         TextInput::make('name')
                             ->label(__('user.columns.name'))
+                            ->maxLength(255)
                             ->required()
                             ->columnSpan([
                                 'default' => 12,
@@ -73,6 +74,7 @@ class CustomEditProfile extends EditRecord
                             ]),
                         TextInput::make('email')
                             ->label(__('user.fields.email'))
+                            ->maxLength(255)
                             ->required()
                             ->email()
                             ->unique(ignoreRecord: true)

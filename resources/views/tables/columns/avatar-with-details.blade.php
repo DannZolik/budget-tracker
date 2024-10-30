@@ -27,9 +27,9 @@
     @endif
     <div class="flex flex-col justify-center mb-1">
         <p class="text-sm text-gray-900 dark:text-gray-100 group-hover:text-gray-500 dark:group-hover:text-gray-400">
-            {{ $getTitle() }}</p>
+            {{ Str::limit($getTitle(), 26) }}</p>
         <p class="text-xs text-gray-600 dark:text-gray-400 group-hover:text-gray-400 dark:group-hover:text-gray-500">
-            {{ $getDescription() }}</p>
+            {{ Str::limit($getDescription(), 40) }}</p>
     </div>
 </div>
 @if ($getLink())

@@ -146,7 +146,7 @@ class EarningsResource extends Resource
                     ->sortable(),
                 TextColumn::make('sum')
                     ->label(__('earning.fields.sum'))
-//                    ->searchable()
+                    ->searchable()
                     ->sortable(),
                 TextColumn::make('created_at')
                     ->icon('tabler-calendar')

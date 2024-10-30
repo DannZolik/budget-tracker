@@ -158,7 +158,7 @@ class EarningCategoryResource extends Resource
                         ->size(TextColumnSize::Large),
                     TextColumn::make('description')
                         ->label(__('earningCategory.fields.description'))
-                        ->words(15)
+                        ->limit(36)
                         ->searchable()
                         ->sortable()
                         ->markdown()

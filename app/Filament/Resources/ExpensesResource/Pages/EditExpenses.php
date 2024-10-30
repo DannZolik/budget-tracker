@@ -23,4 +23,13 @@ class EditExpenses extends EditRecord
     return $this->getResource()::getUrl('index');
 
     }
+
+    protected function mutateFormDataBeforeSave(array $data): array
+    {
+        if ($data['sum'] == "-0") {
+            $data['sum'] = 0;
+        }
+
+        return $data;
+    }
 }

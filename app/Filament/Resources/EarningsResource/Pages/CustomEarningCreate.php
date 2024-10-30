@@ -103,6 +103,11 @@ class CustomEarningCreate extends Page implements HasForms
 
         $this->record->name = $data['name'];
         $this->record->description = $data['description'];
+
+        if ($data['sum'] == "-0") {
+            $data['sum'] = 0;
+        }
+        
         $this->record->sum = $data['sum'];
         $this->record->category_id = $this->category_id;
         $this->record->user_id = Auth::id();

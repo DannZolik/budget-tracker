@@ -86,8 +86,9 @@ class CustomEditProfile extends EditRecord
                             ]),
                         TextInput::make('phone')
                             ->label(__('user.fields.phone'))
-                            ->numeric()
-                            ->minValue(100000)
+                            ->tel()
+                            ->telRegex('/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\.\/0-9]*$/')
+//                            ->minValue(100000)
                             ->unique(ignoreRecord: true)
                             ->columnSpan([
                                 'default' => 12,

@@ -152,14 +152,17 @@ class ExpenseCategoryResource extends Resource
                             return $record->icon_color;
                         }),
                     TextColumn::make('name')
+
                         ->label(__('expenseCategory.fields.title'))
                         ->searchable()
+
+                        ->limit(18)
                         ->sortable()
                         ->weight(FontWeight::Bold)
                         ->size(TextColumnSize::Large),
                     TextColumn::make('description')
                         ->label(__('expenseCategory.fields.description'))
-                        ->limit(36)
+                        ->limit(20)
                         ->searchable()
                         ->sortable()
                         ->markdown()

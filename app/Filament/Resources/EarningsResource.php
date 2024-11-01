@@ -140,6 +140,7 @@ class EarningsResource extends Resource
                     ->label(__('earning.fields.name'))
                     ->searchable()
                     ->sortable(),
+                    ->limit(30),
                 TextColumn::make('earningsCategory.name')
                     ->label(__('earning.fields.category'))
                     ->searchable()

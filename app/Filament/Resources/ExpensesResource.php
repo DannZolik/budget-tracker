@@ -141,6 +141,7 @@ class ExpensesResource extends Resource
                     ->label(__('expense.fields.name'))
                     ->searchable()
                     ->sortable(),
+                    ->limit(30),
                 TextColumn::make('expensesCategory.name')
                     ->label(__('expense.fields.category'))
                     ->searchable()

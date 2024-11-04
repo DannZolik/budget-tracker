@@ -124,6 +124,71 @@
                 <div class="mb-4">
                     <button
                         class="w-full text-left flex justify-between items-center p-4 bg-[#0F141A] shadow rounded focus:outline-none">
+                        <span class="text-lg font-semibold text-white">How can I create an Earning/Expense? </span>
+                        <svg class="h-5 w-5 text-white transition-transform duration-200 transform" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="faq-content hidden p-4 bg-[#0F141A] shadow rounded mt-1">
+                        <p class="text-white">
+                            <ol>
+                            <li>1. Navigate to the Earning or Expense page. </li>
+                            <li>2. Click the button to create a new entry. </li>
+                            <li>3. You will be redirected to a new page where you can input the following details: Name, Category, Amount, Description. </li>
+                            <li>4. After filling in all the necessary fields, click the "Create" button. </li>
+                            <li> 5. You will then be redirected back to the main page.</li>
+                            </ol>
+                        </p>
+                    </div>
+                </div>
+                <!-- FAQ Item 5 -->
+                <div class="mb-4">
+                    <button
+                        class="w-full text-left flex justify-between items-center p-4 bg-[#0F141A] shadow rounded focus:outline-none">
+                        <span class="text-lg font-semibold text-white">How can I delete an Earning/Expense?</span>
+                        <svg class="h-5 w-5 text-white transition-transform duration-200 transform" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="faq-content hidden p-4 bg-[#0F141A] shadow rounded mt-1">
+                        <p class="text-white">                           
+                            <ol>
+                            <li>1. Navigate to the Earning or Expense page. </li>
+                            <li>2. Select any entries you would like to delete by clicking on the checkbox on the left of them. </li>
+                            <li>3. Click on the bulk actions button. </li>
+                            <li>4. Click the "Delete selected" button. </li>
+                            <li>5. You will then be shown a confirmation menu, click the "Confirm" button.</li>
+                            </ol>
+                        </p>
+                    </div>
+                </div>
+                <!-- FAQ Item 6 -->
+                <div class="mb-4">
+                    <button
+                        class="w-full text-left flex justify-between items-center p-4 bg-[#0F141A] shadow rounded focus:outline-none">
+                        <span class="text-lg font-semibold text-white">How can I edit an Earning/Expense?</span>
+                        <svg class="h-5 w-5 text-white transition-transform duration-200 transform" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="faq-content hidden p-4 bg-[#0F141A] shadow rounded mt-1">
+                        <p class="text-white">                            <ol>
+                            <li>1. Navigate to the Earning or Expense page. </li>
+                            <li>2. Click on the "Edit" button on the right side of the entry.</li>
+                            <li>3. You will be redirected to a new page where you can change the following details: Name, Category, Amount, Description. </li>
+                            <li>4. After making changes click the "Save changes" button. </li>
+                            <li>5. You will then be redirected back to the main page.</li>
+                            </ol>
+                        </p>
+                    </div>
+                </div>
+                <!-- FAQ Item 7 -->
+                <div class="mb-4">
+                    <button
+                        class="w-full text-left flex justify-between items-center p-4 bg-[#0F141A] shadow rounded focus:outline-none">
                         <span class="text-lg font-semibold text-white">Can I track multiple cryptocurrencies?</span>
                         <svg class="h-5 w-5 text-white transition-transform duration-200 transform" fill="none"
                             stroke="currentColor" viewBox="0 0 24 24">
@@ -135,7 +200,7 @@
                             multiple assets to your portfolio and monitor their performance in real-time.</p>
                     </div>
                 </div>
-                <!-- FAQ Item 5 -->
+                <!-- FAQ Item 8 -->
                 <div>
                     <button
                         class="w-full text-left flex justify-between items-center p-4 bg-[#0F141A] shadow rounded focus:outline-none">

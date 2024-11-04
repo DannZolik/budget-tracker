@@ -15,7 +15,6 @@ use App\Models\EarningCategory;
 use Filament\Resources\Resource;
 use Illuminate\Support\Facades\Auth;
 use Filament\Forms\Components\Hidden;
-use Filament\Forms\Components\Textarea;
 use App\Filament\Resources\EarningsResource\Pages;
 use Filament\Forms\Components\Section;
 use Illuminate\Database\Eloquent\Model;

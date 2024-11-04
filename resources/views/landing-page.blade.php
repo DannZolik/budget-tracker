@@ -175,7 +175,8 @@
                         </svg>
                     </button>
                     <div class="faq-content hidden p-4 bg-[#0F141A] shadow rounded mt-1">
-                        <p class="text-white">                            <ol>
+                        <p class="text-white">                            
+                            <ol>
                             <li>1. Navigate to the Earning or Expense page. </li>
                             <li>2. Click on the "Edit" button on the right side of the entry.</li>
                             <li>3. You will be redirected to a new page where you can change the following details: Name, Category, Amount, Description. </li>

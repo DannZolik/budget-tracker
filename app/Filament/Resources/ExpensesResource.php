@@ -79,6 +79,7 @@ class ExpensesResource extends Resource
                         TextInput::make('name')
                             ->label(__('expense.fields.name'))
                             ->placeholder(__('expense.placeholders.name'))
+                            ->maxLength(255)
                             ->columnSpan([
                                 'default' => 12,
                                 'sm' => 4,
@@ -116,7 +117,7 @@ class ExpensesResource extends Resource
                         Textarea::make('description')
                             ->label(__('expense.fields.description'))
                             ->placeholder(__('expense.placeholders.description'))
-                            ->maxLength(255)
+                            ->maxLength(65535)
                             ->rows(4)
                             ->columnSpan([
                                 'default' => 12,
@@ -140,6 +141,7 @@ class ExpensesResource extends Resource
                     ->label(__('expense.fields.name'))
                     ->searchable()
                     ->sortable(),
+                    ->limit(30),
                 TextColumn::make('expensesCategory.name')
                     ->label(__('expense.fields.category'))
                     ->searchable()

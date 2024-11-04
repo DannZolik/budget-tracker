@@ -82,6 +82,7 @@ class ExpenseCategoryResource extends Resource
                         TextInput::make('name')
                             ->label(__('expenseCategory.fields.title'))
                             ->required()
+                            ->maxLength(255)
                             ->columnSpan([
                                 'default' => 12,
                                 'sm' => 12,
@@ -122,6 +123,7 @@ class ExpenseCategoryResource extends Resource
                             ]),
                         Textarea::make('description')
                             ->label(__('expenseCategory.fields.description'))
+                            ->maxLength(65535)
                             ->nullable()
                             ->rows(3)
                             ->columnSpan([

@@ -78,6 +78,7 @@ class EarningsResource extends Resource
                         TextInput::make('name')
                             ->label(__('earning.fields.name'))
                             ->placeholder(__('earning.placeholders.name'))
+                            ->maxLength(255)
                             ->columnSpan([
                                 'default' => 12,
                                 'sm' => 4,
@@ -115,7 +116,7 @@ class EarningsResource extends Resource
                         Textarea::make('description')
                             ->label(__('earning.fields.description'))
                             ->placeholder(__('earning.placeholders.description'))
-                            ->maxLength(255)
+                            ->maxLength(65535)
                             ->rows(4)
                             ->columnSpan([
                                 'default' => 12,
@@ -139,6 +140,7 @@ class EarningsResource extends Resource
                     ->label(__('earning.fields.name'))
                     ->searchable()
                     ->sortable(),
+                    ->limit(30),
                 TextColumn::make('earningsCategory.name')
                     ->label(__('earning.fields.category'))
                     ->searchable()

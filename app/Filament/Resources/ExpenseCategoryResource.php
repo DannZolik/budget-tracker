@@ -94,6 +94,7 @@ class ExpenseCategoryResource extends Resource
                                 return Auth::id();
                             }),
                         ColorPicker::make('icon_color')->required()
+                            ->regex('/^#([a-f0-9]{6}|[a-f0-9]{3})\b$/')
                             ->label(__('expenseCategory.fields.icon_color'))
                             ->columnSpan([
                                 'default' => 12,
@@ -102,6 +103,7 @@ class ExpenseCategoryResource extends Resource
                                 'lg' => 6,
                             ]),
                         ColorPicker::make('bg_color')->required()
+                            ->regex('/^#([a-f0-9]{6}|[a-f0-9]{3})\b$/')
                             ->label(__('expenseCategory.fields.background_color'))
                             ->columnSpan([
                                 'default' => 12,

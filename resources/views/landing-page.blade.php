@@ -83,7 +83,7 @@
                         </svg>
                     </button>
                     <div class="faq-content hidden p-4 bg-[#0F141A] shadow rounded mt-1">
-                        <p class="text-white">coinKeeper is a comprehensive platform designed to help you manage, track, and
+                        <p class="text-white">cCoinKeeper is a comprehensive platform designed to help you manage, track, and
                             optimize your cryptocurrency investments effortlessly. With real-time data, portfolio analytics,
                             and secure storage solutions, coinKeeper is your all-in-one crypto companion.</p>
                     </div>
@@ -190,18 +190,60 @@
                 <div class="mb-4">
                     <button
                         class="w-full text-left flex justify-between items-center p-4 bg-[#0F141A] shadow rounded focus:outline-none">
-                        <span class="text-lg font-semibold text-white">Can I track multiple cryptocurrencies?</span>
+                        <span class="text-lg font-semibold text-white">How do I view and sort Reports?</span>
                         <svg class="h-5 w-5 text-white transition-transform duration-200 transform" fill="none"
                             stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                         </svg>
                     </button>
                     <div class="faq-content hidden p-4 bg-[#0F141A] shadow rounded mt-1">
-                        <p class="text-white">Yes, coinKeeper supports a wide range of cryptocurrencies. You can add
-                            multiple assets to your portfolio and monitor their performance in real-time.</p>
+                        <p class="text-white">
+                            Firstly, navigate to the Earning or Expense reports page.
+                            <br>
+                            You can view summaries of expenses and earnings
+                            in a table format with columns for "From" (start date), "To" (end date), and "Amount" (total sum). <br>
+                            Click any column header to sort entries in ascending or descending order.</p>
                     </div>
                 </div>
                 <!-- FAQ Item 8 -->
+                <div class="mb-4">
+                    <button
+                        class="w-full text-left flex justify-between items-center p-4 bg-[#0F141A] shadow rounded focus:outline-none">
+                        <span class="text-lg font-semibold text-white">How do I filter Reports?</span>
+                        <svg class="h-5 w-5 text-white transition-transform duration-200 transform" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="faq-content hidden p-4 bg-[#0F141A] shadow rounded mt-1">
+                        <p class="text-white">
+                        To filter data by date: <br>
+                        1. Click the funnel icon under "Export Data" in the top right. <br>
+                        2. Choose a date range by selecting dates in one or both fields.</p>
+                    </div>
+                </div>
+                <!-- FAQ Item 9 -->
+                <div class="mb-4">
+                    <button
+                        class="w-full text-left flex justify-between items-center p-4 bg-[#0F141A] shadow rounded focus:outline-none">
+                        <span class="text-lg font-semibold text-white">How do I export my Reports?</span>
+                        <svg class="h-5 w-5 text-white transition-transform duration-200 transform" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="faq-content hidden p-4 bg-[#0F141A] shadow rounded mt-1">
+                        <p class="text-white">
+                        Users can export summary data to Microsoft Excel in .csv or .xlsx format. To export:
+
+                        1. Follow the filtering instructions if needed. <br>
+                        2. Click "Export Data" in the top right. <br>
+                        3. Select which tables to export and click "Export." <br>
+                        4. Wait for the export to complete, indicated by a number on the bell icon.
+                        Click it to download the file in the desired format. </p>
+                    </div>
+                </div>
+                <!-- FAQ Item 9 -->
                 <div>
                     <button
                         class="w-full text-left flex justify-between items-center p-4 bg-[#0F141A] shadow rounded focus:outline-none">

@@ -77,6 +77,7 @@ class ExpensesResource extends Resource
                         TextInput::make('name')
                             ->label(__('expense.fields.name'))
                             ->placeholder(__('expense.placeholders.name'))
+                            ->maxLength(255)
                             ->columnSpan([
                                 'default' => 12,
                                 'sm' => 4,
@@ -85,6 +86,8 @@ class ExpensesResource extends Resource
                             ])
                             ->required(),
                         TextInput::make('sum')
+                            ->numeric()
+                            ->minValue(0)
                             ->label(__('expense.fields.sum'))
                             ->placeholder(__('expense.placeholders.sum'))
                             ->prefixIcon('tabler-pig-money')
@@ -109,10 +112,11 @@ class ExpensesResource extends Resource
                             ->options(ExpenseCategory::where('user_id', Auth::id())->pluck('name', 'id'))
                             ->preload()
                             ->searchable(),
-                        RichEditor::make('description')
+                        Textarea::make('description')
                             ->label(__('expense.fields.description'))
                             ->placeholder(__('expense.placeholders.description'))
-                            //                            ->rows(4)
+                            ->maxLength(65535)
+                            ->rows(4)
                             ->columnSpan([
                                 'default' => 12,
                                 'sm' => 12,
@@ -134,7 +138,8 @@ class ExpensesResource extends Resource
                 TextColumn::make('name')
                     ->label(__('expense.fields.name'))
                     ->searchable()
-                    ->sortable(),
+                    ->sortable()
+                    ->limit(30),
                 TextColumn::make('expensesCategory.name')
                     ->label(__('expense.fields.category'))
                     ->searchable()
@@ -155,9 +160,9 @@ class ExpensesResource extends Resource
                     ->searchable()
                     ->limit(50),
             ])
+            ->defaultSort('created_at', 'DESC')
             ->modifyQueryUsing(function (Builder $query) {
-                return $query->where('user_id', Auth::id())
-                    ->orderBy('created_at', 'desc');
+                return $query->where('user_id', Auth::id());
             })
             ->filters([
                 //

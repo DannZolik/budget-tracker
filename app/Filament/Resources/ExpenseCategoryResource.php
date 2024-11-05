@@ -82,6 +82,7 @@ class ExpenseCategoryResource extends Resource
                         TextInput::make('name')
                             ->label(__('expenseCategory.fields.title'))
                             ->required()
+                            ->maxLength(255)
                             ->columnSpan([
                                 'default' => 12,
                                 'sm' => 12,
@@ -93,6 +94,7 @@ class ExpenseCategoryResource extends Resource
                                 return Auth::id();
                             }),
                         ColorPicker::make('icon_color')->required()
+                            ->regex('/^#([a-f0-9]{6}|[a-f0-9]{3})\b$/')
                             ->label(__('expenseCategory.fields.icon_color'))
                             ->columnSpan([
                                 'default' => 12,
@@ -101,6 +103,7 @@ class ExpenseCategoryResource extends Resource
                                 'lg' => 6,
                             ]),
                         ColorPicker::make('bg_color')->required()
+                            ->regex('/^#([a-f0-9]{6}|[a-f0-9]{3})\b$/')
                             ->label(__('expenseCategory.fields.background_color'))
                             ->columnSpan([
                                 'default' => 12,
@@ -109,10 +112,9 @@ class ExpenseCategoryResource extends Resource
                                 'lg' => 6,
                             ]),
                         IconPicker::make('icon')->required()
-//                            ->sets(['tabler'])
                             ->label(__('expenseCategory.fields.icon'))
                             ->required()
-                            ->allowedIcons(["tabler-coin-bitcoin-filled","tabler-car","tabler-credit-card-filled","tabler-shopping-cart-filled","tabler-gift","tabler-devices-pc","tabler-baguette","tabler-receipt-tax","tabler-hospital","tabler-brand-mcdonalds","tabler-beer-filled","tabler-device-tv"])
+                            ->allowedIcons(["tabler-coin-bitcoin-filled", "tabler-car", "tabler-credit-card-filled", "tabler-shopping-cart-filled", "tabler-gift", "tabler-devices-pc", "tabler-baguette", "tabler-receipt-tax", "tabler-hospital", "tabler-brand-mcdonalds", "tabler-beer-filled", "tabler-device-tv"])
                             ->preload()
                             ->columns(3)
                             ->columnSpan([
@@ -123,6 +125,7 @@ class ExpenseCategoryResource extends Resource
                             ]),
                         Textarea::make('description')
                             ->label(__('expenseCategory.fields.description'))
+                            ->maxLength(65535)
                             ->nullable()
                             ->rows(3)
                             ->columnSpan([
@@ -151,13 +154,17 @@ class ExpenseCategoryResource extends Resource
                             return $record->icon_color;
                         }),
                     TextColumn::make('name')
+
                         ->label(__('expenseCategory.fields.title'))
                         ->searchable()
+
+                        ->limit(18)
                         ->sortable()
                         ->weight(FontWeight::Bold)
                         ->size(TextColumnSize::Large),
-                    TextColumn::make(__('expenseCategory.fields.description'))
-                        ->words(15)
+                    TextColumn::make('description')
+                        ->label(__('expenseCategory.fields.description'))
+                        ->limit(20)
                         ->searchable()
                         ->sortable()
                         ->markdown()

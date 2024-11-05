@@ -10,6 +10,7 @@ use Filament\Resources\Resource;
 use Illuminate\Support\Facades\Auth;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Section;
+use Filament\Tables\Actions\EditAction;
 use Illuminate\Database\Eloquent\Model;
 use Filament\Forms\Components\TextInput;
 use App\Tables\Columns\AvatarWithDetails;
@@ -20,6 +21,16 @@ class UserResource extends Resource
 {
     protected static ?string $model = User::class;
     protected static ?string $navigationGroup = 'System';
+
+    public static function getLabel(): ?string
+    {
+        return __('user.label');
+    }
+
+    public static function getPluralLabel(): ?string
+    {
+        return __('user.label_plural');
+    }
 
     public static function canView(Model $record): bool
     {
@@ -50,83 +61,8 @@ class UserResource extends Resource
     public static function form(Form $form): Form
     {
         return $form
-            ->columns([
-                'default' => 12,
-                'sm'      => 12,
-                'md'      => 12,
-                'lg'      => 12,
-            ])
             ->schema([
-                Section::make(__('User Information'))
-                    ->columnSpan([
-                        'default' => 12,
-                        'sm'      => 8,
-                        'md'      => 8,
-                        'lg'      => 8,
-                    ])
-                    ->columns([
-                        'default' => 12,
-                        'sm'      => 12,
-                        'md'      => 12,
-                        'lg'      => 12,
-                    ])
-                    ->schema([
-                        TextInput::make('name')
-                            ->label('Name')
-                            ->required()
-                            ->columnSpan([
-                                'default' => 12,
-                                'sm'      => 12,
-                                'md'      => 12,
-                                'lg'      => 12,
-                            ]),
-                        TextInput::make('email')
-                            ->label('Email')
-                            ->email()
-                            ->required()
-                            ->columnSpan([
-                                'default' => 12,
-                                'sm'      => 6,
-                                'md'      => 6,
-                                'lg'      => 6,
-                            ]),
-                        Select::make('role')
-                            ->relationship(name: 'rolee', titleAttribute: 'name')
-                            ->label('Role')
-                            ->required()
-                            ->columnSpan([
-                                'default' => 12,
-                                'sm'      => 6,
-                                'md'      => 6,
-                                'lg'      => 6,
-                            ]),
-                    ]),
-                Section::make('Avatar')
-                    ->columnSpan([
-                        'default' => 12,
-                        'sm' => 4,
-                        'md' => 4,
-                        'lg' => 4,
-                    ])
-                    ->columns([
-                        'default' => 12,
-                        'sm' => 12,
-                        'md' => 12,
-                        'lg' => 12,
-                    ])
-                    ->schema([
-                        FileUpload::make('avatar')
-                            ->label('')
-                            ->image()
-                            ->disk('public')
-                            ->directory('users')
-                            ->columnSpan([
-                                'default' => 12,
-                                'sm' => 12,
-                                'md' => 12,
-                                'lg' => 12,
-                            ]),
-                    ]),
+                //
             ]);
     }
 
@@ -136,7 +72,7 @@ class UserResource extends Resource
         return $table
             ->columns([
                 AvatarWithDetails::make('name')
-                    ->label('Name')
+                    ->label(__('user.columns.name'))
                     ->searchable()
                     ->sortable()
                     ->marginStart()
@@ -151,21 +87,32 @@ class UserResource extends Resource
                         return $record->email;
                     }),
                 AvatarWithDetails::make('role')
-                    ->label('Role')
+                    ->label(__('user.columns.role'))
                     ->searchable()
                     ->sortable()
                     ->marginStart()
+                    ->bgColor(function ($record) {
+                        $state = $record->role;
+
+                        if ($state == 1) {
+                            return '#10B981';
+                        } elseif ($state == 2) {
+                            return '#F59E0B';
+                        } elseif ($state == 3) {
+                            return '#3B82F6';
+                        }
+                    })
                     ->avatarType('icon')
                     ->icon('tabler-shield-check-filled')
                     ->title(function ($record) {
                         $state = $record->role;
 
                         if ($state == 1) {
-                            return "Super admin";
+                            return __('user.admin.super_admin');
                         } elseif ($state == 2) {
-                            return "Admin";
+                            return __('user.admin.admin');;
                         } elseif ($state == 3) {
-                            return "Regular user";
+                            return __('user.admin.user');;
                         }
                     })
             ])
@@ -173,13 +120,18 @@ class UserResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                EditAction::make()
+                    ->url(fn(Model $record): string => route('filament.admin.resources.users.editProfile', [
+                        'record' => $record->id,
+                    ]))
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])->recordUrl(function ($record) {
+                return route('filament.admin.resources.users.editProfile', ['record' => $record->id]);
+            });
     }
 
 

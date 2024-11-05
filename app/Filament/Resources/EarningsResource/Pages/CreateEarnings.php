@@ -16,4 +16,13 @@ class CreateEarnings extends CreateRecord
     return $this->getResource()::getUrl('index');
 
     }
+
+    protected function mutateFormDataBeforeCreate(array $data): array
+    {
+        if ($data['sum'] == "-0") {
+            $data['sum'] = 0;
+        }
+
+        return $data;
+    }
 }

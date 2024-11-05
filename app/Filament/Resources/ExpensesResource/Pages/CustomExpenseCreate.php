@@ -54,6 +54,7 @@ class CustomExpenseCreate extends Page implements HasForms
                     ])
                     ->schema([
                         TextInput::make('name')
+                            ->label(__('expense.fields.name'))
                             ->columnSpan([
                                 'default' => 12,
                                 'sm' => 6,
@@ -62,7 +63,10 @@ class CustomExpenseCreate extends Page implements HasForms
                             ])
                             ->required(),
                         TextInput::make('sum')
+                            ->label(__('expense.fields.sum'))
                             ->prefixIcon('tabler-pig-money')
+                            ->numeric()
+                            ->minValue(0)
                             ->required()
                             ->columnSpan([
                                 'default' => 12,
@@ -71,6 +75,7 @@ class CustomExpenseCreate extends Page implements HasForms
                                 'lg' => 6,
                             ]),
                         Textarea::make('description')
+                            ->label(__('expense.fields.description'))
                             ->rows(4)
                             ->columnSpan([
                                 'default' => 12,
@@ -98,6 +103,11 @@ class CustomExpenseCreate extends Page implements HasForms
 
         $this->record->name = $data['name'];
         $this->record->description = $data['description'];
+
+        if ($data['sum'] == "-0") {
+            $data['sum'] = 0;
+        }
+
         $this->record->sum = $data['sum'];
         $this->record->category_id = $this->category_id;
         $this->record->user_id = Auth::id();

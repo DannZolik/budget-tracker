@@ -77,6 +77,7 @@ class EarningsResource extends Resource
                         TextInput::make('name')
                             ->label(__('earning.fields.name'))
                             ->placeholder(__('earning.placeholders.name'))
+                            ->maxLength(255)
                             ->columnSpan([
                                 'default' => 12,
                                 'sm' => 4,
@@ -86,6 +87,8 @@ class EarningsResource extends Resource
                             ->required(),
                         TextInput::make('sum')
                             ->label(__('earning.fields.sum'))
+                            ->numeric()
+                            ->minValue(0)
                             ->placeholder(__('earning.placeholders.sum'))
                             ->prefixIcon('tabler-pig-money')
                             ->columnSpan([
@@ -109,9 +112,11 @@ class EarningsResource extends Resource
                             ->options(EarningCategory::where('user_id', Auth::id())->pluck('name', 'id'))
                             ->preload()
                             ->searchable(),
-                        RichEditor::make('description')
+                        Textarea::make('description')
                             ->label(__('earning.fields.description'))
                             ->placeholder(__('earning.placeholders.description'))
+                            ->maxLength(65535)
+                            ->rows(4)
                             ->columnSpan([
                                 'default' => 12,
                                 'sm' => 12,
@@ -133,7 +138,8 @@ class EarningsResource extends Resource
                 TextColumn::make('name')
                     ->label(__('earning.fields.name'))
                     ->searchable()
-                    ->sortable(),
+                    ->sortable()
+                    ->limit(30),
                 TextColumn::make('earningsCategory.name')
                     ->label(__('earning.fields.category'))
                     ->searchable()
@@ -153,10 +159,9 @@ class EarningsResource extends Resource
                     ->sortable()
                     ->searchable()
                     ->limit(50),
-            ])
+            ])->defaultSort('created_at', 'DESC')
             ->modifyQueryUsing(function (Builder $query) {
-                return $query->where('user_id', Auth::id())
-                    ->orderBy('created_at', 'desc');
+                return $query->where('user_id', Auth::id());
             })
             ->filters([
                 //

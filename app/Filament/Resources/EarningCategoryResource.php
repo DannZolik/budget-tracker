@@ -80,6 +80,7 @@ class EarningCategoryResource extends Resource
                     ->schema([
                         TextInput::make('name')
                             ->label(__('earningCategory.fields.title'))
+                            ->maxLength(255)
                             ->required()
                             ->columnSpan([
                                 'default' => 12,
@@ -108,9 +109,8 @@ class EarningCategoryResource extends Resource
                                 'lg' => 6,
                             ]),
                         IconPicker::make('icon')->required()
-//                            ->sets(['tabler'])
                             ->label(__('earningCategory.fields.icon'))
-                            ->allowedIcons(["tabler-coin-bitcoin-filled","tabler-car","tabler-receipt","tabler-devices-pc","tabler-receipt-tax","tabler-gift","tabler-cash","tabler-beer-filled","tabler-coins","tabler-mail","tabler-dice-5"])
+                            ->allowedIcons(["tabler-coin-bitcoin-filled", "tabler-car", "tabler-receipt", "tabler-devices-pc", "tabler-receipt-tax", "tabler-gift", "tabler-cash", "tabler-beer-filled", "tabler-coins", "tabler-mail", "tabler-dice-5"])
                             ->required()
                             ->preload()
                             ->columns(3)
@@ -123,6 +123,7 @@ class EarningCategoryResource extends Resource
                         Textarea::make('description')
                             ->label(__('earningCategory.fields.description'))
                             ->nullable()
+                             ->maxLength(65535)
                             ->rows(3)
                             ->columnSpan([
                                 'default' => 12,
@@ -152,11 +153,13 @@ class EarningCategoryResource extends Resource
                     TextColumn::make('name')
                         ->label(__('earningCategory.fields.title'))
                         ->searchable()
+                        ->limit(18)
                         ->sortable()
                         ->weight(FontWeight::Bold)
                         ->size(TextColumnSize::Large),
-                    TextColumn::make(__('earningCategory.fields.description'))
-                        ->words(15)
+                    TextColumn::make('description')
+                        ->label(__('earningCategory.fields.description'))
+                        ->limit(20)
                         ->searchable()
                         ->sortable()
                         ->markdown()

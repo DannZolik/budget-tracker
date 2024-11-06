@@ -83,7 +83,8 @@
                         </svg>
                     </button>
                     <div class="faq-content hidden p-4 bg-[#0F141A] shadow rounded mt-1">
-                        <p class="text-white">cCoinKeeper is a comprehensive platform designed to help you manage, track, and
+                        <p class="text-white">cCoinKeeper is a comprehensive platform designed to help you manage, track,
+                            and
                             optimize your cryptocurrency investments effortlessly. With real-time data, portfolio analytics,
                             and secure storage solutions, coinKeeper is your all-in-one crypto companion.</p>
                     </div>
@@ -132,13 +133,14 @@
                     </button>
                     <div class="faq-content hidden p-4 bg-[#0F141A] shadow rounded mt-1">
                         <p class="text-white">
-                            <ol>
+                        <ol>
                             <li>1. Navigate to the Earning or Expense page. </li>
                             <li>2. Click the button to create a new entry. </li>
-                            <li>3. You will be redirected to a new page where you can input the following details: Name, Category, Amount, Description. </li>
+                            <li>3. You will be redirected to a new page where you can input the following details: Name,
+                                Category, Amount, Description. </li>
                             <li>4. After filling in all the necessary fields, click the "Create" button. </li>
                             <li> 5. You will then be redirected back to the main page.</li>
-                            </ol>
+                        </ol>
                         </p>
                     </div>
                 </div>
@@ -153,14 +155,15 @@
                         </svg>
                     </button>
                     <div class="faq-content hidden p-4 bg-[#0F141A] shadow rounded mt-1">
-                        <p class="text-white">                           
-                            <ol>
+                        <p class="text-white">
+                        <ol>
                             <li>1. Navigate to the Earning or Expense page. </li>
-                            <li>2. Select any entries you would like to delete by clicking on the checkbox on the left of them. </li>
+                            <li>2. Select any entries you would like to delete by clicking on the checkbox on the left of
+                                them. </li>
                             <li>3. Click on the bulk actions button. </li>
                             <li>4. Click the "Delete selected" button. </li>
                             <li>5. You will then be shown a confirmation menu, click the "Confirm" button.</li>
-                            </ol>
+                        </ol>
                         </p>
                     </div>
                 </div>
@@ -175,14 +178,15 @@
                         </svg>
                     </button>
                     <div class="faq-content hidden p-4 bg-[#0F141A] shadow rounded mt-1">
-                        <p class="text-white">                            
-                            <ol>
+                        <p class="text-white">
+                        <ol>
                             <li>1. Navigate to the Earning or Expense page. </li>
                             <li>2. Click on the "Edit" button on the right side of the entry.</li>
-                            <li>3. You will be redirected to a new page where you can change the following details: Name, Category, Amount, Description. </li>
+                            <li>3. You will be redirected to a new page where you can change the following details: Name,
+                                Category, Amount, Description. </li>
                             <li>4. After making changes click the "Save changes" button. </li>
                             <li>5. You will then be redirected back to the main page.</li>
-                            </ol>
+                        </ol>
                         </p>
                     </div>
                 </div>
@@ -201,8 +205,10 @@
                             Firstly, navigate to the Earning or Expense reports page.
                             <br>
                             You can view summaries of expenses and earnings
-                            in a table format with columns for "From" (start date), "To" (end date), and "Amount" (total sum). <br>
-                            Click any column header to sort entries in ascending or descending order.</p>
+                            in a table format with columns for "From" (start date), "To" (end date), and "Amount" (total
+                            sum). <br>
+                            Click any column header to sort entries in ascending or descending order.
+                        </p>
                     </div>
                 </div>
                 <!-- FAQ Item 8 -->
@@ -217,9 +223,9 @@
                     </button>
                     <div class="faq-content hidden p-4 bg-[#0F141A] shadow rounded mt-1">
                         <p class="text-white">
-                        To filter data by date: <br>
-                        1. Click the funnel icon under "Export Data" in the top right. <br>
-                        2. Choose a date range by selecting dates in one or both fields.</p>
+                            To filter data by date: <br>
+                            1. Click the funnel icon under "Export Data" in the top right. <br>
+                            2. Choose a date range by selecting dates in one or both fields.</p>
                     </div>
                 </div>
                 <!-- FAQ Item 9 -->
@@ -234,13 +240,13 @@
                     </button>
                     <div class="faq-content hidden p-4 bg-[#0F141A] shadow rounded mt-1">
                         <p class="text-white">
-                        Users can export summary data to Microsoft Excel in .csv or .xlsx format. To export:
+                            Users can export summary data to Microsoft Excel in .csv or .xlsx format. To export:
 
-                        1. Follow the filtering instructions if needed. <br>
-                        2. Click "Export Data" in the top right. <br>
-                        3. Select which tables to export and click "Export." <br>
-                        4. Wait for the export to complete, indicated by a number on the bell icon.
-                        Click it to download the file in the desired format. </p>
+                            1. Follow the filtering instructions if needed. <br>
+                            2. Click "Export Data" in the top right. <br>
+                            3. Select which tables to export and click "Export." <br>
+                            4. Wait for the export to complete, indicated by a number on the bell icon.
+                            Click it to download the file in the desired format. </p>
                     </div>
                 </div>
                 <!-- FAQ Item 9 -->
@@ -258,7 +264,116 @@
                             section on our website or by emailing support@coinkeeper.com.</p>
                     </div>
                 </div>
-            </div>
+                <!-- FAQ Item 10 -->
+                <div>
+                    <button
+                        class="w-full text-left flex justify-between items-center p-4 bg-[#0F141A] shadow rounded focus:outline-none">
+                        <span class="text-lg font-semibold text-white">How do I create an Expense/Income Category?</span>
+                        <svg class="h-5 w-5 text-white transition-transform duration-200 transform" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="faq-content hidden p-4 bg-[#0F141A] shadow rounded mt-1">
+                        <p class="text-white">Go to the Income or Expense Category page, click "Create," fill in the
+                            details, and submit.</p>
+                    </div>
+                </div>
+                <!-- FAQ Item 11 -->
+                <div>
+                    <button
+                        class="w-full text-left flex justify-between items-center p-4 bg-[#0F141A] shadow rounded focus:outline-none">
+                        <span class="text-lg font-semibold text-white">How can I edit an Expense/Income Category?</span>
+                        <svg class="h-5 w-5 text-white transition-transform duration-200 transform" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="faq-content hidden p-4 bg-[#0F141A] shadow rounded mt-1">
+                        <p class="text-white">Click "Edit" on the Category page, update the details, and save your changes.
+                        </p>
+                    </div>
+                </div>
+                <!-- FAQ Item 12 -->
+                <div>
+                    <button
+                        class="w-full text-left flex justify-between items-center p-4 bg-[#0F141A] shadow rounded focus:outline-none">
+                        <span class="text-lg font-semibold text-white">How do I delete an Expense/Income Category?</span>
+                        <svg class="h-5 w-5 text-white transition-transform duration-200 transform" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="faq-content hidden p-4 bg-[#0F141A] shadow rounded mt-1">
+                        <p class="text-white">Select the category, click "Delete," confirm, and it will be removed from the
+                            list.</p>
+                    </div>
+                </div>
+                <!-- FAQ Item 13 -->
+                <div>
+                    <button
+                        class="w-full text-left flex justify-between items-center p-4 bg-[#0F141A] shadow rounded focus:outline-none">
+                        <span class="text-lg font-semibold text-white">How do I create an Income/Expense entry using a
+                            category?</span>
+                        <svg class="h-5 w-5 text-white transition-transform duration-200 transform" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="faq-content hidden p-4 bg-[#0F141A] shadow rounded mt-1">
+                        <p class="text-white">Select a category, enter the details for the new entry, and click "Create."
+                        </p>
+                    </div>
+                </div>
+                <!-- FAQ Item 14 -->
+                <div>
+                    <button
+                        class="w-full text-left flex justify-between items-center p-4 bg-[#0F141A] shadow rounded focus:outline-none">
+                        <span class="text-lg font-semibold text-white">How do I register a new account?</span>
+                        <svg class="h-5 w-5 text-white transition-transform duration-200 transform" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="faq-content hidden p-4 bg-[#0F141A] shadow rounded mt-1">
+                        <p class="text-white">Click "Login" on the landing page, then select "Register," fill in your
+                            details, and click "Register."
+                        </p>
+                    </div>
+                    <!-- FAQ Item 15 -->
+                    <div>
+                        <button
+                            class="w-full text-left flex justify-between items-center p-4 bg-[#0F141A] shadow rounded focus:outline-none">
+                            <span class="text-lg font-semibold text-white">How do I log in to my account?</span>
+                            <svg class="h-5 w-5 text-white transition-transform duration-200 transform" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                        <div class="faq-content hidden p-4 bg-[#0F141A] shadow rounded mt-1">
+                            <p class="text-white">On the landing page, click "Login," enter your email and password, then
+                                click "Log In."
+                            </p>
+                        </div>
+                        <!-- FAQ Item 16 -->
+                        <div>
+                            <button
+                                class="w-full text-left flex justify-between items-center p-4 bg-[#0F141A] shadow rounded focus:outline-none">
+                                <span class="text-lg font-semibold text-white">How do I edit my user profile or change my
+                                    password?</span>
+                                <svg class="h-5 w-5 text-white transition-transform duration-200 transform" fill="none"
+                                    stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </button>
+                            <div class="faq-content hidden p-4 bg-[#0F141A] shadow rounded mt-1">
+                                <p class="text-white">From the dashboard, go to "User Profile," update your information,
+                                    and click "Save Changes"; to change your password, enter your old and new passwords.
+                                </p>
+                            </div>
+                        </div>
         </section>
 
         <div class="text-white text-center mb-20 pt-4" id="contact-us">
@@ -276,7 +391,7 @@
             </p>
         </div>
 
-        
+
         <script>
             // FAQ Accordion Functionality
             const faqButtons = document.querySelectorAll('#faq button');

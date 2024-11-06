@@ -94,6 +94,7 @@ class EarningCategoryResource extends Resource
                             }),
                         ColorPicker::make('icon_color')->required()
                             ->label(__('earningCategory.fields.icon_color'))
+                            ->regex('/^#([a-f0-9]{6}|[a-f0-9]{3})\b$/')
                             ->columnSpan([
                                 'default' => 12,
                                 'sm' => 6,
@@ -102,6 +103,7 @@ class EarningCategoryResource extends Resource
                             ]),
                         ColorPicker::make('bg_color')->required()
                             ->label(__('earningCategory.fields.background_color'))
+                            ->regex('/^#([a-f0-9]{6}|[a-f0-9]{3})\b$/')
                             ->columnSpan([
                                 'default' => 12,
                                 'sm' => 6,

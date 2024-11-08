@@ -93,6 +93,7 @@ class ExpensesReportResource extends Resource
                         DateTimePicker::make('date_from')
                         ->label(__('expenseReport.fields.from_date'))
                         ->native(false)
+                        ->closeOnDateSelection()
                     ])
                     ->query(
                         function (Builder $query, array $data): Builder {
@@ -108,6 +109,7 @@ class ExpensesReportResource extends Resource
                         DateTimePicker::make('date_to')
                         ->label(__('expenseReport.fields.to_date'))
                         ->native(false)
+                        ->closeOnDateSelection()
                     ])
                     ->query(
                         function (Builder $query, array $data): Builder {

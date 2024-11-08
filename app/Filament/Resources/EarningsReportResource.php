@@ -93,6 +93,7 @@ class EarningsReportResource extends Resource
                         DateTimePicker::make('date_from')
                         ->label(__('earningReport.fields.from_date'))
                         ->native(false)
+                        ->closeOnDateSelection()
                     ])
                     ->query(
                         function (Builder $query, array $data): Builder {
@@ -108,6 +109,7 @@ class EarningsReportResource extends Resource
                         DateTimePicker::make('date_to')
                         ->label(__('earningReport.fields.to_date'))
                         ->native(false)
+                        ->closeOnDateSelection()
                     ])
                     ->query(
                         function (Builder $query, array $data): Builder {

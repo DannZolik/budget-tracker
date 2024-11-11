@@ -12,7 +12,7 @@
         <div class="order-2 lg:order-1 text-center lg:text-left">
             <p class="text-white text-xl mb-4">
                 Take control of your finances effortlessly with <strong>CoinKeeper</strong> – the ultimate money tracking
-                app. Keep track of your income and expenses, set personal budgets, and monitor your financial goals all in
+                app. Keep track of your earnings and expenses, set personal budgets, and monitor your financial goals all in
                 one place. With intuitive charts and insights, CoinKeeper helps you visualize your spending habits and make
                 informed financial decisions.
             </p>
@@ -268,14 +268,14 @@
                 <div>
                     <button
                         class="w-full text-left flex justify-between items-center p-4 bg-[#0F141A] shadow rounded focus:outline-none">
-                        <span class="text-lg font-semibold text-white">How do I create an Expense/Income Category?</span>
+                        <span class="text-lg font-semibold text-white">How do I create an Expense/Earning Category?</span>
                         <svg class="h-5 w-5 text-white transition-transform duration-200 transform" fill="none"
                             stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                         </svg>
                     </button>
                     <div class="faq-content hidden p-4 bg-[#0F141A] shadow rounded mt-1">
-                        <p class="text-white">Go to the Income or Expense Category page, click "Create," fill in the
+                        <p class="text-white">Go to the Earning or Expense Category page, click "Create," fill in the
                             details, and submit.</p>
                     </div>
                 </div>
@@ -283,7 +283,7 @@
                 <div>
                     <button
                         class="w-full text-left flex justify-between items-center p-4 bg-[#0F141A] shadow rounded focus:outline-none">
-                        <span class="text-lg font-semibold text-white">How can I edit an Expense/Income Category?</span>
+                        <span class="text-lg font-semibold text-white">How can I edit an Expense/Earning Category?</span>
                         <svg class="h-5 w-5 text-white transition-transform duration-200 transform" fill="none"
                             stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -298,7 +298,7 @@
                 <div>
                     <button
                         class="w-full text-left flex justify-between items-center p-4 bg-[#0F141A] shadow rounded focus:outline-none">
-                        <span class="text-lg font-semibold text-white">How do I delete an Expense/Income Category?</span>
+                        <span class="text-lg font-semibold text-white">How do I delete an Expense/Earning Category?</span>
                         <svg class="h-5 w-5 text-white transition-transform duration-200 transform" fill="none"
                             stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -313,7 +313,7 @@
                 <div>
                     <button
                         class="w-full text-left flex justify-between items-center p-4 bg-[#0F141A] shadow rounded focus:outline-none">
-                        <span class="text-lg font-semibold text-white">How do I create an Income/Expense entry using a
+                        <span class="text-lg font-semibold text-white">How do I create an Earning/Expense entry using a
                             category?</span>
                         <svg class="h-5 w-5 text-white transition-transform duration-200 transform" fill="none"
                             stroke="currentColor" viewBox="0 0 24 24">

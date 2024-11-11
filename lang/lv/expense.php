@@ -3,7 +3,7 @@
 return [
     'label' => 'Izdevums',
     'label_plural' => 'Izdevumi',
-    'earning_general_information' => 'Izdevumu vispārīga informācija',
+    'expense_general_information' => 'Izdevumu vispārīga informācija',
     'create' => 'Izveidot Izdevumu',
     'fields' => [
         'name' => 'Nosaukums',

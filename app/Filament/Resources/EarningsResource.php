@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use Filament\Forms\Components\Textarea;
 use Filament\Tables;
 use App\Models\Earnings;
 use Filament\Forms\Form;

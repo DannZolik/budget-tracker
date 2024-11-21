@@ -129,9 +129,13 @@ class EarningsReportResource extends Resource
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ])
+            // Izveido pogu galvenē
             ->headerActions([
+                // Definē pogu kā export ( eksportēšana )
                 ExportAction::make('export')
+                // Tulkojums pogai pēc lietotāja izvēlētās valodas
                 ->label(__('earningReport.export'))
+                    // Iesāk funkcijas exporter lietojumu
                     ->exporter(EarningReportExporter::class)
             ]);
     }
